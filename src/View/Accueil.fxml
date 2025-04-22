@@ -48,8 +48,11 @@
             </HBox>
 
             <!-- Bannière -->
-            <Pane prefHeight="100" prefWidth="500" style="-fx-background-color: #ffffff; -fx-border-color: #ccc;">
+            <Pane prefHeight="100" prefWidth="960.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccc;">
                 <Label layoutX="180" layoutY="40" text="Images ou bannière" />
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
             </Pane>
 
             <!-- Conteneur centré -->
@@ -66,14 +69,18 @@
                     </columnConstraints>
 
                     <!-- Spécialités (exemple pour 8 spécialités) -->
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #6c63e8; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #a89ffe; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/stethoscope.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Généraliste" />
-                    </VBox>
+                    <Button onAction="#goToGeneraliste" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #6c63e8; -fx-background-radius: 20; -fx-padding: 15;">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #a89ffe; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/stethoscope.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Généraliste" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
                     <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #33958f; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #5ec0ba; -fx-background-radius: 50%;">
