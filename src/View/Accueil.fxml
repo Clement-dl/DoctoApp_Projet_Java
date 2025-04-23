@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Accueil">
+<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Accueil">
     <!-- Barre latérale -->
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
@@ -13,7 +13,7 @@
                 <VBox.margin>
                     <Insets top="85" />
                 </VBox.margin>
-                <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #178088; -fx-background-radius: 15; -fx-padding: 10;">
+                <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #178088; -fx-background-radius: 15; ">
                     <ImageView fitHeight="64.0" fitWidth="64.0">
                         <image><Image url="@../Images/maison.png" /></image>
                     </ImageView>
@@ -69,7 +69,7 @@
                     </columnConstraints>
 
                     <!-- Spécialités (exemple pour 8 spécialités) -->
-                    <Button onAction="#goToGeneraliste" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                    <Button onAction="#goToGeneraliste" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <graphic>
                             <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #6c63e8; -fx-background-radius: 20; -fx-padding: 15;">
                                 <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #a89ffe; -fx-background-radius: 50%;">
@@ -82,68 +82,96 @@
                         </graphic>
                     </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #33958f; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #5ec0ba; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/coeur-anatomique.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Cardiologie" />
-                    </VBox>
+                    <Button onAction="#goToCardiologie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #33958f; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #5ec0ba; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/coeur-anatomique.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Cardiologie" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #156e95; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #4099c0; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/fracture-osseuse.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Orthopédie" />
-                    </VBox>
+                    <Button onAction="#goToOrthopedie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #156e95; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #4099c0; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/fracture-osseuse.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Orthopédie" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #e98542; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #fec07d; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/rayons-x.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Radiologie" />
-                    </VBox>
+                    <Button onAction="#goToRadiologie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #e98542; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #fec07d; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/rayons-x.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Radiologie" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #54119f; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #7f3cca; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/dent.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Dentiste" />
-                    </VBox>
+                    <Button onAction="#goToDentiste" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #54119f; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #7f3cca; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/dent.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Dentiste" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #4ea53e; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71e35c; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/circuit-cerebral.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Neurologie" />
-                    </VBox>
+                    <Button onAction="#goToNeurologie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #4ea53e; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71e35c; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/circuit-cerebral.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Neurologie" />
+                            </VBox>
+                            </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #ddf65a; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #dbea8c; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/estomac.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Gastro" />
-                    </VBox>
+                    <Button onAction="#goToGastroenterologie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #ddf65a; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #dbea8c; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/estomac.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Gastro" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-                    <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #e93a3a; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                        <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #ef6e6e; -fx-background-radius: 50%;">
-                            <ImageView fitHeight="64.0" fitWidth="64.0">
-                                <image><Image url="@../Images/allergie.png" /></image>
-                            </ImageView>
-                        </StackPane>
-                        <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Dermatologie" />
-                    </VBox>
+                    <Button onAction="#goToDermatologie" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox alignment="CENTER" prefHeight="170.0" prefWidth="122.0" spacing="10" style="-fx-background-color: #e93a3a; -fx-background-radius: 20; -fx-padding: 15;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                <StackPane prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #ef6e6e; -fx-background-radius: 50%;">
+                                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                                        <image><Image url="@../Images/allergie.png" /></image>
+                                    </ImageView>
+                                </StackPane>
+                                <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;" text="Dermatologie" />
+                            </VBox>
+                        </graphic>
+                    </Button>
 
                     <rowConstraints>
                         <RowConstraints />

@@ -17,7 +17,6 @@ public class Main extends Application {
         URL fxmlUrl = fxml.toURI().toURL();
         FXMLLoader loader = new FXMLLoader(fxmlUrl);
         Parent root = loader.load();
-        primaryStage.setFullScreen(true); // Mode plein écran
         primaryStage.setTitle("Accueil");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
