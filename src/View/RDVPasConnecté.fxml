@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Circle?>
+<BorderPane prefHeight="800" prefWidth="1280" style="-fx-background-color: #83bebb;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RDVPasConnecté">
+
+    <!-- Bouton retour en haut à gauche -->
+    <top>
+        <HBox alignment="TOP_LEFT">
+            <children>
+                <Button fx:id="backButton" onAction="#goBackPasConnecté" style="-fx-background-color: #c1e0e2; -fx-background-radius: 60; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0">
+                            <image>
+                                <Image url="@../Images/angle-gauche.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <HBox.margin><Insets left="30" top="20" /></HBox.margin>
+        </HBox>
+    </top>
+
+    <!-- Contenu principal au centre -->
+    <center>
+        <VBox alignment="TOP_CENTER" maxHeight="650" maxWidth="900" prefHeight="650" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #ffffff; -fx-border-radius: 20;">
+            <children>
+
+                <StackPane alignment="TOP_CENTER">
+                    <children>
+                        <!-- Cercle blanc autour de l'image -->
+                        <VBox alignment="CENTER" StackPane.alignment="TOP_CENTER" spacing="10" style="-fx-translate-y: -40;">
+                            <children>
+                                <!-- StackPane contenant le cercle et l'image -->
+                                <StackPane>
+                                    <!-- Cercle -->
+                                    <Circle radius="40" fill="white" stroke="lightgray" strokeWidth="1" />
+
+                                    <!-- Image -->
+                                    <ImageView fitWidth="64" fitHeight="64">
+                                        <image>
+                                            <Image url="@../Images/compte.png" />
+                                        </image>
+                                    </ImageView>
+                                </StackPane>
+
+                                <!-- Nom et spécialité -->
+                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dr. Nom prénom" />
+                                <Label style="-fx-font-size: 14px;" text="Spécialité" />
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+
+                <!-- Informations -->
+                <TextArea editable="false" maxHeight="250.0" maxWidth="600.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600" promptText="Information" style="-fx-border-color: lightgray; -fx-border-radius: 15; -fx-background-radius: 15;" wrapText="true">
+                    <VBox.margin><Insets bottom="20" /></VBox.margin>
+                </TextArea>
+
+
+                <!-- Section calendrier -->
+                <VBox prefHeight="413.0" prefWidth="697.0">
+                    <children>
+                        <!-- Titre calendrier -->
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Calendrier">
+                            <VBox.margin><Insets bottom="10" /></VBox.margin>
+                        </Label>
+
+                        <!-- Grille des jours et horaires -->
+                        <GridPane alignment="CENTER" hgap="20" vgap="30">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                                <ColumnConstraints halignment="CENTER" percentWidth="10" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints valignment="CENTER" />
+                                <RowConstraints valignment="CENTER" />
+                            </rowConstraints>
+
+                            <!-- Ligne 1 : jours + dates -->
+                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label text="Lundi" />
+                                <Label text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label text="Mardi" />
+                                <Label text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Label text="Mercredi" />
+                                <Label text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #005d74; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                <Label style="-fx-text-fill: white;" text="Jeudi" />
+                                <Label style="-fx-text-fill: white;" text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                                <Label text="Vendredi" />
+                                <Label text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                                <Label text="Samedi" />
+                                <Label text="Date" />
+                            </VBox>
+                            <VBox alignment="CENTER" style="-fx-background-color: #e94c4c; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="6" GridPane.rowIndex="0">
+                                <Label style="-fx-text-fill: white;" text="Dimanche" />
+                                <Label style="-fx-text-fill: white;" text="Date" />
+                            </VBox>
+
+                            <!-- Ligne 2 : horaires -->
+                            <Button style="-fx-background-color: #c6dce0;" text="09H00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #e94c4c; -fx-text-fill: white;" text="10H00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #005d74; -fx-text-fill: white;" text="11H00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #d3e2e2;" text="12H00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #e94c4c; -fx-text-fill: white;" text="14H00" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #c6dce0;" text="15H00" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                            <Button style="-fx-background-color: #c6dce0;" text="16H00" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        </GridPane>
+                    </children>
+                </VBox>
+                <Button style="-fx-background-color: #005d74; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 30; -fx-padding: 10 30;" text="Connecter Vous">
+                    <VBox.margin>
+                        <Insets bottom="20" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

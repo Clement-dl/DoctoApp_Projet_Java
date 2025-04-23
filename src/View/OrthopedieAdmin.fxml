@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dermatologie">
+<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OrthopedieAdmin">
     <!-- Barre latérale -->
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
@@ -13,7 +13,7 @@
                 <VBox.margin>
                     <Insets top="85" />
                 </VBox.margin>
-                <Button onAction="#goToAccueil" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                <Button onAction="#goToAccueilAdmin" style="-fx-background-color: transparent; -fx-cursor: hand;">
                     <graphic>
                         <ImageView fitHeight="64.0" fitWidth="64.0">
                             <image>
@@ -25,7 +25,7 @@
             </StackPane>
 
             <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/carte-de-credit.png" /></image>
+                <image><Image url="@../Images/moniteur-de-tableau-de-bord.png" /></image>
             </ImageView>
             <ImageView fitHeight="64.0" fitWidth="64.0">
                 <image><Image url="@../Images/trophee-etoile.png" /></image>
@@ -37,20 +37,20 @@
     </left>
 
     <center>
-        <StackPane style="-fx-background-color: #f18787;">
+        <StackPane style="-fx-background-color: #70a7be;">
             <VBox alignment="TOP_CENTER" maxWidth="800.0" spacing="40.0" style="-fx-padding: 80 0 0 0;">
                 <StackPane>
                     <HBox alignment="CENTER" maxHeight="91.0" maxWidth="575.0" minHeight="91.0" minWidth="575.0" prefHeight="91.0" prefWidth="575.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-padding: 10 30;">
                         <ImageView fitHeight="64.0" fitWidth="64.0">
                             <image>
-                                <Image url="@../Images/allergie.png" />
+                                <Image url="@../Images/fracture-osseuse.png" />
                             </image>
                         </ImageView>
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black; -fx-background-color: white; -fx-padding: 10 30; -fx-background-radius: 30;" text="Dermatologue" />
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: black; -fx-background-color: white; -fx-padding: 10 30; -fx-background-radius: 30;" text="Orthopediste" />
                     </HBox>
                 </StackPane>
 
-                <VBox alignment="TOP_CENTER" minWidth="912.0" prefHeight="539.0" prefWidth="912.0" spacing="20.0" style="-fx-background-color: #f18787; -fx-padding: 30; -fx-background-radius: 20;">
+                <VBox alignment="TOP_CENTER" minWidth="912.0" prefHeight="539.0" prefWidth="912.0" spacing="20.0" style="-fx-background-color: #87bed5; -fx-padding: 30; -fx-background-radius: 20;">
                     <!-- Carte Médecin (à dupliquer dynamiquement) -->
                     <VBox spacing="15.0">
                         <HBox alignment="CENTER_LEFT" maxHeight="128.0" maxWidth="848.0" minHeight="128.0" minWidth="843.0" prefHeight="128.0" prefWidth="843.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 10;">
@@ -61,10 +61,9 @@
                                     </image>
                                 </ImageView>
                             </StackPane>
-                            <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #fad6d6; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
-                            <Button fx:id="rdvButton" onAction="#goToRDV" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #e93a3a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
+                            <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #cfe1e9; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
+                            <Button fx:id="rdvButton" onAction="#goToRDVAdmin" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #156e95; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
                         </HBox>
-
                         <!-- Répéter dynamiquement les HBox ci-dessus pour chaque médecin -->
                     </VBox>
 

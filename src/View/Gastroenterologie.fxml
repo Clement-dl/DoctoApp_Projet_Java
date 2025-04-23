@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dentiste">
+<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Gastroenterologie">
     <!-- Barre latérale -->
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
@@ -62,7 +62,7 @@
                                 </ImageView>
                             </StackPane>
                             <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #f8fddd; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
-                            <Button minHeight="40.0" minWidth="134.0" style="-fx-background-color: #ddf65a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10;" text="Prendre rendez-vous" translateX="100.0" />
+                            <Button fx:id="rdvButton" onAction="#goToRDV" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #ddf65a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
                         </HBox>
 
                         <!-- Répéter dynamiquement les HBox ci-dessus pour chaque médecin -->

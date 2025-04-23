@@ -31,4 +31,23 @@ public class Cardiologie {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void goToRDV(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/RDV.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("RDV");
+            stage.setScene(new Scene(root));
+            System.out.println("Bouton RDV cliqué !");
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

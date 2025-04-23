@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dermatologie">
+<BorderPane prefHeight="800" prefWidth="1280" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DermatologieAdmin">
     <!-- Barre latérale -->
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
@@ -13,7 +13,7 @@
                 <VBox.margin>
                     <Insets top="85" />
                 </VBox.margin>
-                <Button onAction="#goToAccueil" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                <Button onAction="#goToAccueilAdmin" style="-fx-background-color: transparent; -fx-cursor: hand;">
                     <graphic>
                         <ImageView fitHeight="64.0" fitWidth="64.0">
                             <image>
@@ -25,7 +25,7 @@
             </StackPane>
 
             <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/carte-de-credit.png" /></image>
+                <image><Image url="@../Images/moniteur-de-tableau-de-bord.png" /></image>
             </ImageView>
             <ImageView fitHeight="64.0" fitWidth="64.0">
                 <image><Image url="@../Images/trophee-etoile.png" /></image>
@@ -62,7 +62,7 @@
                                 </ImageView>
                             </StackPane>
                             <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #fad6d6; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
-                            <Button fx:id="rdvButton" onAction="#goToRDV" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #e93a3a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
+                            <Button fx:id="rdvButton" onAction="#goToRDVAdmin" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #e93a3a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
                         </HBox>
 
                         <!-- Répéter dynamiquement les HBox ci-dessus pour chaque médecin -->

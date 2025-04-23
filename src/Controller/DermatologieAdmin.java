@@ -12,17 +12,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class Dermatologie {
+public class DermatologieAdmin {
     @FXML
-    public void goToAccueil(ActionEvent event) {
+    public void goToAccueilAdmin(ActionEvent event) {
         try {
-            File fxml = new File("src/View/Accueil.fxml");
+            File fxml = new File("src/View/AccueilAdmin.fxml");
             URL fxmlUrl = fxml.toURI().toURL();
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Accueil");
+            stage.setTitle("AccueilAdmin");
             stage.setScene(new Scene(root));
 
             stage.show();
@@ -33,17 +33,16 @@ public class Dermatologie {
     }
 
     @FXML
-    private void goToRDV(ActionEvent event) {
+    private void goToRDVAdmin(ActionEvent event) {
         try {
-            File fxml = new File("src/View/RDV.fxml");
+            File fxml = new File("src/View/RDVAdmin.fxml");
             URL fxmlUrl = fxml.toURI().toURL();
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("RDV");
+            stage.setTitle("RDVAdmin");
             stage.setScene(new Scene(root));
-            System.out.println("Bouton RDV cliqué !");
 
             stage.show();
         } catch (IOException e) {
