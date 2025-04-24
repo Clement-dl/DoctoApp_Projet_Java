@@ -158,5 +158,23 @@ public class Accueil {
             e.printStackTrace();
         }
     }
+
+    public void goToConnexion(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/ConnecterVous.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("ConnecterVous");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Connexion">
+    
+    <!-- Barre latérale -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
+            <StackPane>
+                <VBox.margin>
+                    <Insets top="85" />
+                </VBox.margin>
+                <Button onAction="#goToAccueil" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0">
+                            <image>
+                                <Image url="@../Images/maison.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </StackPane>
+
+            <ImageView fitHeight="64.0" fitWidth="64.0">
+                <image><Image url="@../Images/carte-de-credit.png" /></image>
+            </ImageView>
+            <ImageView fitHeight="64.0" fitWidth="64.0">
+                <image><Image url="@../Images/trophee-etoile.png" /></image>
+            </ImageView>
+            <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #178088; -fx-background-radius: 15; ">
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/compte.png" /></image>
+                    </ImageView>
+            </StackPane>
+        </VBox>
+    </left>
+
+    <!-- Contenu central -->
+    <center>
+        <VBox alignment="CENTER" spacing="30" style="-fx-background-color: #f0f0f0;">
+            <VBox.margin>
+                <Insets top="50" />
+            </VBox.margin>
+
+            <!-- Conteneur de login -->
+            <VBox alignment="CENTER" maxHeight="300.0" maxWidth="600.0" prefHeight="300.0" prefWidth="600.0" spacing="15" style="-fx-background-color: linear-gradient(to bottom right, #178088, #2ea1a8); -fx-background-radius: 20; -fx-padding: 30;">
+                <Label style="-fx-font-size: 20px; -fx-text-fill: black; -fx-font-weight: bold;" text="Connecter Vous" />
+
+                <!-- Champ nom d'utilisateur avec icône -->
+                <HBox alignment="CENTER_LEFT" maxWidth="250" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/compte.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" promptText="Nom d'utilisateur" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+
+                <!-- Champ mot de passe avec icône -->
+                <HBox alignment="CENTER_LEFT" maxWidth="250" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/bloquer.png" /></image>
+                    </ImageView>
+                    <PasswordField  alignment="CENTER" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <Button style="-fx-background-radius: 30; -fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 25;" text="Login" />
+            </VBox>
+
+            <!-- Bouton créer un compte -->
+            <Button onAction="#goToCreerCompte" style="-fx-background-radius: 30; -fx-background-color: #045b78; -fx-text-fill: white; -fx-padding: 8 25; -fx-cursor: hand;" text="Créer un compte" />
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreerCompte">
+
+    <!-- Barre latérale -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="180.0" spacing="85" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
+            <StackPane>
+                <VBox.margin>
+                    <Insets top="85" />
+                </VBox.margin>
+                <Button onAction="#goToAccueil" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0">
+                            <image>
+                                <Image url="@../Images/maison.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </StackPane>
+
+            <ImageView fitHeight="64.0" fitWidth="64.0">
+                <image><Image url="@../Images/carte-de-credit.png" /></image>
+            </ImageView>
+            <ImageView fitHeight="64.0" fitWidth="64.0">
+                <image><Image url="@../Images/trophee-etoile.png" /></image>
+            </ImageView>
+            <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #178088; -fx-background-radius: 15; ">
+                <ImageView fitHeight="64.0" fitWidth="64.0">
+                    <image><Image url="@../Images/compte.png" /></image>
+                </ImageView>
+            </StackPane>
+        </VBox>
+    </left>
+
+    <!-- Contenu central -->
+    <center>
+        <VBox alignment="CENTER" spacing="30" style="-fx-background-color: #f0f0f0;">
+            <VBox.margin>
+                <Insets top="50" />
+            </VBox.margin>
+
+            <!-- Conteneur d'inscription -->
+            <VBox alignment="CENTER" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" spacing="12" style="-fx-background-color: linear-gradient(to bottom right, #178088, #2ea1a8); -fx-background-radius: 20; -fx-padding: 30;">
+                <Label style="-fx-font-size: 20px; -fx-text-fill: black; -fx-font-weight: bold;" text="Créer un Compte" />
+
+                <!-- Les 8 champs avec hauteur augmentée -->
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/id-card-clip-alt.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" maxWidth="400.0" prefWidth="310.0" promptText="Nom d'utilisateur" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/world.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" prefWidth="310.0" promptText="Adresse" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/city.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" prefWidth="310.0" promptText="ville" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/postal-address.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" prefWidth="310.0" promptText="Code Postal" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/phone-flip.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" prefWidth="310.0" promptText="Numéro de Téléphone" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/heart-rate.png" /></image>
+                    </ImageView>
+                    <TextField alignment="CENTER" prefWidth="310.0" promptText="Carte Vitale" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
+                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <image><Image url="@../Images/bloquer.png" /></image>
+                    </ImageView>
+                    <PasswordField alignment="CENTER" prefWidth="310.0" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                </HBox>
+                <!-- Espacement avant bouton -->
+                <HBox alignment="CENTER">
+                    <HBox.margin>
+                        <Insets top="40" />
+                    </HBox.margin>
+                    <Button style="-fx-background-radius: 30; -fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 25;" text="S'inscrire" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </center>
+</BorderPane>

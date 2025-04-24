@@ -26,9 +26,13 @@
             <ImageView fitHeight="64.0" fitWidth="64.0">
                 <image><Image url="@../Images/trophee-etoile.png" /></image>
             </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/compte.png" /></image>
-            </ImageView>
+            <Button onAction="#goToConnexion" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/compte.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
         </VBox>
     </left>
 

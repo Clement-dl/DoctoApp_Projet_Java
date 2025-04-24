@@ -1,7 +1,7 @@
 package Controller;
 
-import Utils.NavigationManager;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,9 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class RDV {
-
-    public void goBack(ActionEvent event) {
+public class CreerCompte {
+    @FXML
+    public void goToAccueil(ActionEvent event) {
         try {
             File fxml = new File("src/View/Accueil.fxml");
             URL fxmlUrl = fxml.toURI().toURL();
@@ -26,6 +26,7 @@ public class RDV {
             stage.setScene(new Scene(root));
 
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

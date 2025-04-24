@@ -14,13 +14,13 @@ import java.net.URL;
 public class RDVPasConnecté {
     public void goBackPasConnecté(ActionEvent event) {
         try {
-            File fxml = new File("src/View/Cardiologie.fxml");
+            File fxml = new File("src/View/Accueil.fxml");
             URL fxmlUrl = fxml.toURI().toURL();
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Cardiologie");
+            stage.setTitle("Acccueil");
             stage.setScene(new Scene(root));
 
             stage.show();
