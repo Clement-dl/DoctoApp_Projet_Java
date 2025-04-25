@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CompteAdmin">
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CompteAdminGererRDV">
 
     <!-- Barre latérale -->
     <left>
@@ -52,7 +52,7 @@
                             <ImageView fitHeight="24" fitWidth="24">
                                 <image><Image url="@../Images/list.png" /></image>
                             </ImageView>
-                            <Label style="-fx-font-weight: bold;" text="Liste des Clients et Médecins" />
+                            <Label style="-fx-font-weight: bold;" text="Liste des RDV" />
                         </HBox>
                     </VBox>
                 </HBox>
@@ -62,15 +62,7 @@
                     <HBox.margin>
                         <Insets top="40" />
                     </HBox.margin>
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Gérer RDV" />
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier un Medecin" />
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier Client" />
-                </HBox>
-
-                <!-- Ligne de 2 boutons en dessous -->
-                <HBox alignment="CENTER" spacing="40">
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Ajouter Medecin" />
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Supprimer" />
+                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Terminer RDV" />
                 </HBox>
             </VBox>
         </VBox>

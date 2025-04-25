@@ -27,7 +27,7 @@ public class Main extends Application {
         }
 
         // Chargement de l'interface graphique
-        File fxml = new File("src/View/Accueil.fxml");
+        File fxml = new File("src/View/CompteClient.fxml");
         URL fxmlUrl = fxml.toURI().toURL();
         FXMLLoader loader = new FXMLLoader(fxmlUrl);
         Parent root = loader.load();

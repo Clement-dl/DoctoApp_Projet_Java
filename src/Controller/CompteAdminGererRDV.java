@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class CompteAdmin {
+public class CompteAdminGererRDV {
     @FXML
     public void goToAccueil(ActionEvent event) {
         try {
