@@ -12,6 +12,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import DAO.UtilisateurDAO;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import Model.Utilisateur;
+
+
 public class Connexion {
 
     @FXML
@@ -49,5 +58,50 @@ public class Connexion {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+
+    @FXML
+    private void handleLogin(ActionEvent event) {
+        String email = usernameField.getText();
+        String motDePasse = passwordField.getText();
+
+        String type = UtilisateurDAO.verifierUtilisateur(email, motDePasse);
+
+        if (type == null) {
+            showAlert("Erreur", "Email ou mot de passe incorrect.");
+        } else {
+            try {
+                String fxmlFile = switch (type) {
+                    case "Patient" -> "/View/CompteClient.fxml";
+                    case "Administrateur" -> "/View/CompteAdmin.fxml";
+                    default -> null;
+                };
+
+                if (fxmlFile != null) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+                    Parent root = loader.load();
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } else {
+                    showAlert("Erreur", "Type d'utilisateur inconnu.");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Erreur", "Impossible de charger la page.");
+            }
+        }
+    }
+
+    private void showAlert(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

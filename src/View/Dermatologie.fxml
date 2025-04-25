@@ -50,21 +50,9 @@
                     </HBox>
                 </StackPane>
 
-                <VBox alignment="TOP_CENTER" minWidth="912.0" prefHeight="539.0" prefWidth="912.0" spacing="20.0" style="-fx-background-color: #f18787; -fx-padding: 30; -fx-background-radius: 20;">
+                <VBox alignment="TOP_CENTER" minWidth="912.0" prefHeight="539.0" prefWidth="912.0" spacing="20.0" style="-fx-background-color: #ff9e9e; -fx-padding: 30; -fx-background-radius: 20;">
                     <!-- Carte Médecin (à dupliquer dynamiquement) -->
-                    <VBox spacing="15.0">
-                        <HBox alignment="CENTER_LEFT" maxHeight="128.0" maxWidth="848.0" minHeight="128.0" minWidth="843.0" prefHeight="128.0" prefWidth="843.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 10;">
-                            <StackPane minHeight="115.0" prefHeight="110.0" prefWidth="110.0" style="-fx-border-color: #a9a9a9; -fx-border-radius: 50; -fx-background-radius: 50;">
-                                <ImageView fitHeight="48.0" fitWidth="48.0">
-                                    <image>
-                                        <Image url="@../Images/compte.png" />
-                                    </image>
-                                </ImageView>
-                            </StackPane>
-                            <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #fad6d6; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
-                            <Button fx:id="rdvButton" onAction="#goToRDV" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #e93a3a; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0" />
-                        </HBox>
-
+                    <VBox fx:id="medecinListContainer" spacing="15.0">
                         <!-- Répéter dynamiquement les HBox ci-dessus pour chaque médecin -->
                     </VBox>
 

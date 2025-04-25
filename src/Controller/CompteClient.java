@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,4 +32,16 @@ public class CompteClient {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleLogout(ActionEvent event) throws IOException {
+        Session.deconnecter(); // Supprimer les données de session
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Accueil.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }

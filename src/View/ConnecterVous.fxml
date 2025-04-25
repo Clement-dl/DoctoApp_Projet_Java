@@ -55,7 +55,7 @@
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <image><Image url="@../Images/compte.png" /></image>
                     </ImageView>
-                    <TextField alignment="CENTER" promptText="Nom d'utilisateur" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                    <TextField fx:id="usernameField" alignment="CENTER" promptText="Nom d'utilisateur" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                 </HBox>
 
                 <!-- Champ mot de passe avec icône -->
@@ -63,9 +63,9 @@
                     <ImageView fitHeight="24.0" fitWidth="24.0">
                         <image><Image url="@../Images/bloquer.png" /></image>
                     </ImageView>
-                    <PasswordField  alignment="CENTER" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                    <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Mot de passe" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                 </HBox>
-                <Button style="-fx-background-radius: 30; -fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 25;" text="Login" />
+                <Button fx:id="loginButton" onAction="#handleLogin" style="-fx-background-radius: 30; -fx-background-color: white; -fx-text-fill: black; -fx-padding: 8 25;" text="Connecter Vous" />
             </VBox>
 
             <!-- Bouton créer un compte -->

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -159,21 +160,22 @@ public class Accueil {
         }
     }
 
-    public void goToConnexion(ActionEvent event) {
-        try {
-            File fxml = new File("src/View/ConnecterVous.fxml");
-            URL fxmlUrl = fxml.toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+    @FXML
+    private void goToConnexion(ActionEvent event) throws IOException {
+        if (Session.estConnecte()) {
+            // Charger CompteClient.fxml directement
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/CompteClient.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("ConnecterVous");
             stage.setScene(new Scene(root));
-
             stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            // Rediriger vers la page de connexion
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ConnecterVous.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
 }
