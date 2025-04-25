@@ -30,12 +30,20 @@
                     <image><Image url="@../Images/moniteur-de-tableau-de-bord.png" /></image>
                 </ImageView>
             </StackPane>
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/trophee-etoile.png" /></image>
-            </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/compte.png" /></image>
-            </ImageView>
+            <Button onAction="#goToTopMedecinAdmin" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/trophee-etoile.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button onAction="#goToConnexionAdmin" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/compte.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
         </VBox>
     </left>
 

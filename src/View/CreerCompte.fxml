@@ -25,16 +25,28 @@
                 </Button>
             </StackPane>
 
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/carte-de-credit.png" /></image>
-            </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/trophee-etoile.png" /></image>
-            </ImageView>
+            <Button onAction="#goToPaiement" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/carte-de-credit.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button onAction="#goToTopMedecin" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/trophee-etoile.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
             <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #178088; -fx-background-radius: 15; ">
-                <ImageView fitHeight="64.0" fitWidth="64.0">
-                    <image><Image url="@../Images/compte.png" /></image>
-                </ImageView>
+                <Button onAction="#goToConnexion" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="64.0">
+                            <image><Image url="@../Images/compte.png" /></image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </StackPane>
         </VBox>
     </left>

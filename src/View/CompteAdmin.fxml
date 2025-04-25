@@ -15,7 +15,7 @@
                 <VBox.margin>
                     <Insets top="85" />
                 </VBox.margin>
-                <Button onAction="#goToAccueil" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                <Button onAction="#goToAccueilAdmin" style="-fx-background-color: transparent; -fx-cursor: hand;">
                     <graphic>
                         <ImageView fitHeight="64.0" fitWidth="64.0">
                             <image>
@@ -25,13 +25,20 @@
                     </graphic>
                 </Button>
             </StackPane>
-
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/carte-de-credit.png" /></image>
-            </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="64.0">
-                <image><Image url="@../Images/trophee-etoile.png" /></image>
-            </ImageView>
+            <Button onAction="#goToDashboard" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/moniteur-de-tableau-de-bord.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button onAction="#goToTopMedecinAdmin" style="-fx-background-color: transparent; -fx-padding: 0; -fx-cursor: hand;">
+                <graphic>
+                    <ImageView fitHeight="64.0" fitWidth="64.0">
+                        <image><Image url="@../Images/trophee-etoile.png" /></image>
+                    </ImageView>
+                </graphic>
+            </Button>
             <StackPane maxHeight="110.0" maxWidth="120.0" prefHeight="110.0" prefWidth="120.0" style="-fx-background-color: #ff6060; -fx-background-radius: 15;">
                 <ImageView fitHeight="64.0" fitWidth="64.0">
                     <image><Image url="@../Images/compte.png" /></image>
@@ -79,7 +86,7 @@
     <!-- Bouton logout -->
     <top>
         <HBox alignment="TOP_RIGHT" spacing="10" style="-fx-background-color: #FFFFFF">
-            <Button style="-fx-background-color: transparent;">
+            <Button onAction="#logout" style="-fx-background-color: transparent;">
                 <graphic>
                     <StackPane>
                         <Circle fill="#ffc7c7" radius="24" />

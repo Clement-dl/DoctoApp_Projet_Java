@@ -34,14 +34,52 @@ public class CompteClient {
     }
 
     @FXML
-    private void handleLogout(ActionEvent event) throws IOException {
-        Session.deconnecter(); // Supprimer les données de session
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Accueil.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    void logout(ActionEvent event) {
+        Connexion.logout(); // Réinitialise
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ConnecterVous.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void goToPaiement(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/Paiement.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Paiement");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToTopMedecin(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/TopMedecin.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("TopMedecin");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

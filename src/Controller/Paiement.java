@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,57 @@ public class Paiement {
             stage.show();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToTopMedecin(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/TopMedecin.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("TopMedecin");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToConnexion(ActionEvent event) {
+        try {
+            Utilisateur utilisateur = Connexion.getUtilisateurConnecte();
+
+            if (utilisateur != null) {
+                String type = utilisateur.getType();
+                String fxmlFile = switch (type) {
+                    case "Patient" -> "/View/CompteClient.fxml";
+                    case "Administrateur" -> "/View/CompteAdmin.fxml";
+                    default -> null;
+                };
+
+                if (fxmlFile != null) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+                    Scene scene = new Scene(loader.load());
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                }
+
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ConnecterVous.fxml"));
+                Scene scene = new Scene(loader.load());
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
