@@ -74,16 +74,17 @@
                             </Button>
                         </HBox>
                         <VBox spacing="5">
-                            <Button text="Nom et Prénom" />
-                            <Button text="Adresse ligne 1" />
-                            <Button text="Ville" />
-                            <Button text="Code Postal" />
-                            <Button text="Pays" />
-                            <Button text="Numéro de Téléphone" />
-                            <Button text="Carte Vitale" />
-                            <Button text="Mot de passe" />
+                            <Label fx:id="nomPrenomLabel" text="Nom et Prénom" />
+                            <Label fx:id="nomUtilisateurLabel" text="Nom d'utilisateur" />
+                            <Label fx:id="adresseLabel" text="Adresse ligne 1" />
+                            <Label fx:id="villeLabel" text="Ville" />
+                            <Label fx:id="codePostalLabel" text="Code Postal" />
+                            <Label fx:id="telephoneLabel" text="Numéro de Téléphone" />
+                            <Label fx:id="carteVitaleLabel" text="Carte Vitale" />
+                            <Label fx:id="mdpLabel" text="Mot de passe" />
                         </VBox>
                     </VBox>
+
 
                     <!-- Section Rendez-vous -->
                     <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="250" spacing="10" style="-fx-background-color: #90ee90; -fx-border-width: 2; -fx-background-radius: 20; -fx-padding: 15;">
