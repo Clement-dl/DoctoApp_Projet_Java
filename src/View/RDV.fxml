@@ -50,15 +50,15 @@
                                 </StackPane>
 
                                 <!-- Nom et spécialité -->
-                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dr. Nom prénom" />
-                                <Label style="-fx-font-size: 14px;" text="Spécialité" />
+                                <Label fx:id="nomLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                                <Label fx:id="specialiteLabel" style="-fx-font-size: 14px;" />
                             </children>
                         </VBox>
                     </children>
                 </StackPane>
 
                 <!-- Informations -->
-                <TextArea editable="false" maxHeight="250.0" maxWidth="600.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600" promptText="Information" style="-fx-border-color: lightgray; -fx-border-radius: 15; -fx-background-radius: 15;" wrapText="true">
+                <TextArea fx:id="informationsTextArea" editable="false" maxHeight="250.0" maxWidth="600.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600" promptText="Information" style="-fx-border-color: lightgray; -fx-border-radius: 15; -fx-background-radius: 15;" wrapText="true">
                     <VBox.margin><Insets bottom="20" /></VBox.margin>
                 </TextArea>
 
@@ -66,13 +66,35 @@
                 <!-- Section calendrier -->
                 <VBox prefHeight="413.0" prefWidth="697.0">
                     <children>
-                        <!-- Titre calendrier -->
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Calendrier">
+                        <HBox alignment="CENTER" spacing="20">
+                            <children>
+                                <Button fx:id="leftArrowButton" onAction="#previousWeek" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                                    <graphic>
+                                        <ImageView fitWidth="24" fitHeight="24">
+                                            <image>
+                                                <Image url="@../Images/fleche-petite-gauche.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+
+                                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Calendrier" />
+
+                                <Button fx:id="rightArrowButton" onAction="#nextWeek" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                                    <graphic>
+                                        <ImageView fitWidth="24" fitHeight="24">
+                                            <image>
+                                                <Image url="@../Images/fleche-petite-droite.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
                             <VBox.margin><Insets bottom="10" /></VBox.margin>
-                        </Label>
+                        </HBox>
 
                         <!-- Grille des jours et horaires -->
-                        <GridPane alignment="CENTER" hgap="20" vgap="30">
+                        <GridPane fx:id="calendrierGrid" alignment="CENTER" hgap="20" vgap="30">
                             <columnConstraints>
                                 <ColumnConstraints halignment="CENTER" percentWidth="10" />
                                 <ColumnConstraints halignment="CENTER" percentWidth="10" />
@@ -86,49 +108,26 @@
                                 <RowConstraints valignment="CENTER" />
                                 <RowConstraints valignment="CENTER" />
                             </rowConstraints>
-
-                            <!-- Ligne 1 : jours + dates -->
-                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                                <Label text="Lundi" />
-                                <Label text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                                <Label text="Mardi" />
-                                <Label text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                                <Label text="Mercredi" />
-                                <Label text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #005d74; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                                <Label style="-fx-text-fill: white;" text="Jeudi" />
-                                <Label style="-fx-text-fill: white;" text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="4" GridPane.rowIndex="0">
-                                <Label text="Vendredi" />
-                                <Label text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="5" GridPane.rowIndex="0">
-                                <Label text="Samedi" />
-                                <Label text="Date" />
-                            </VBox>
-                            <VBox alignment="CENTER" style="-fx-background-color: #e94c4c; -fx-background-radius: 10; -fx-padding: 5 10;" GridPane.columnIndex="6" GridPane.rowIndex="0">
-                                <Label style="-fx-text-fill: white;" text="Dimanche" />
-                                <Label style="-fx-text-fill: white;" text="Date" />
-                            </VBox>
+                            <Button fx:id="lundiButton" text="Lundi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <Button fx:id="mardiButton" text="Mardi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <Button fx:id="mercrediButton" text="Mercredi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                            <Button fx:id="jeudiButton" text="Jeudi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                            <Button fx:id="vendrediButton" text="Vendredi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                            <Button fx:id="samediButton" text="Samedi" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                            <Button fx:id="dimancheButton" text="Dimanche" prefWidth="78" prefHeight="45" style="-fx-background-color: #c6dce0; -fx-background-radius: 10; -fx-padding: 10; -fx-alignment: center; -fx-text-alignment: center; -fx-content-display: top; -fx-font-size: 14px;" GridPane.columnIndex="6" GridPane.rowIndex="0" />
 
                             <!-- Ligne 2 : horaires -->
-                            <Button style="-fx-background-color: #c6dce0;" text="09H00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #e94c4c; -fx-text-fill: white;" text="10H00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #005d74; -fx-text-fill: white;" text="11H00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #d3e2e2;" text="12H00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #e94c4c; -fx-text-fill: white;" text="14H00" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #c6dce0;" text="15H00" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                            <Button style="-fx-background-color: #c6dce0;" text="16H00" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                            <Button fx:id="h9Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="09H00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <Button fx:id="h10Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="10H00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <Button fx:id="h11Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="11H00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <Button fx:id="h12Button" style="-fx-background-radius: 10; -fx-background-color: #d3e2e2;" text="12H00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                            <Button fx:id="h14Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="14H00" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                            <Button fx:id="h15Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="15H00" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                            <Button fx:id="h16Button" style="-fx-background-radius: 10; -fx-background-color: #c6dce0;" text="16H00" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                         </GridPane>
                     </children>
                 </VBox>
-                <Button style="-fx-background-color: #005d74; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 30; -fx-padding: 10 30;" text="Prendre Rendez-Vous">
+                <Button onAction="#goToPaiement" style="-fx-background-color: #005d74; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 30; -fx-padding: 10 30;" text="Prendre Rendez-Vous">
                     <VBox.margin>
                         <Insets bottom="20" />
                     </VBox.margin>
@@ -136,5 +135,4 @@
             </children>
         </VBox>
     </center>
-
 </BorderPane>

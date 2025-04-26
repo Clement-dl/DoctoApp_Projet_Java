@@ -87,12 +87,16 @@ public class Gastroenterologie {
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
+            RDV controller = loader.getController();
+            controller.setSpecialiste(specialiste);
+            controller.setUtilisateur(Connexion.getUtilisateurConnecte()); // si méthode disponible
+
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("RDV");
             stage.setScene(new Scene(root));
-            System.out.println("RDV pour : " + specialiste.getNomComplet());
-
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

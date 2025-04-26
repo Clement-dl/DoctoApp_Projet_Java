@@ -11,7 +11,6 @@ public class SpecialisteDAO {
     public SpecialisteDAO(Connection conn) {
         this.conn = conn;
     }
-
     public List<Specialiste> getSpecialistesParSpecialite(String specialite) {
         List<Specialiste> liste = new ArrayList<>();
         String query = "SELECT s.id_specialiste, s.specialisation, s.qualification, u.nom, u.prenom FROM specialiste s " +
@@ -34,7 +33,6 @@ public class SpecialisteDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return liste;
     }
 }

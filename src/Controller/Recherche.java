@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Specialiste;
 import Model.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,19 +35,23 @@ public class Recherche {
     }
 
     @FXML
-    private void goToRDV(ActionEvent event) {
+    private void goToRDV(ActionEvent event, Specialiste specialiste) {
         try {
             File fxml = new File("src/View/RDV.fxml");
             URL fxmlUrl = fxml.toURI().toURL();
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
 
+            RDV controller = loader.getController();
+            controller.setSpecialiste(specialiste);
+            controller.setUtilisateur(Connexion.getUtilisateurConnecte()); // si méthode disponible
+
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("RDV");
             stage.setScene(new Scene(root));
-            System.out.println("Bouton RDV cliqué !");
-
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

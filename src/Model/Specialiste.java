@@ -19,4 +19,6 @@ public class Specialiste {
     public String getSpecialisation() { return specialisation; }
     public String getQualification() { return qualification; }
     public String getNomComplet() { return prenom + " " + nom; }
+    public String getPrenom() { return prenom; }
+    public String getNom() { return nom; }
 }

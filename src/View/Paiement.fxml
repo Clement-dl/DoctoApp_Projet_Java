@@ -62,34 +62,34 @@
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <image><Image url="@../Images/id-card-clip-alt.png" /></image>
                             </ImageView>
-                            <TextField alignment="CENTER" maxWidth="400.0" prefWidth="310.0" promptText="Type de carte de paiement" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                            <TextField fx:id="typeCarteField" alignment="CENTER" maxWidth="400.0" prefWidth="310.0" promptText="Type de carte de paiement" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <image><Image url="@../Images/world.png" /></image>
                             </ImageView>
-                            <TextField alignment="CENTER" prefWidth="310.0" promptText="Numéros de carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                            <TextField fx:id="numeroCarteField" alignment="CENTER" prefWidth="310.0" promptText="Numéros de carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <image><Image url="@../Images/city.png" /></image>
                             </ImageView>
-                            <TextField alignment="CENTER" prefWidth="310.0" promptText="Nom sur la carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                            <TextField fx:id="nomCarteField" alignment="CENTER" prefWidth="310.0" promptText="Nom sur la carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <image><Image url="@../Images/postal-address.png" /></image>
                             </ImageView>
-                            <TextField alignment="CENTER" prefWidth="310.0" promptText="Date D'expiration" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                            <TextField fx:id="expirationField" alignment="CENTER" prefWidth="310.0" promptText="Date D'expiration" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
                                 <image><Image url="@../Images/phone-flip.png" /></image>
                             </ImageView>
-                            <TextField alignment="CENTER" prefWidth="310.0" promptText="Code de Sécurité" style="-fx-background-color: transparent; -fx-font-size: 14;" />
+                            <TextField fx:id="codeSecuriteField" alignment="CENTER" prefWidth="310.0" promptText="Code de Sécurité" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                     </VBox>
-                <Button style="-fx-background-radius: 30; -fx-background-color: #56bcc4; -fx-text-fill: #000000; -fx-padding: 8 25; -fx-cursor: hand;" text="Payer" />
+                <Button fx:id="payerButton" onAction="#handlePayer" style="-fx-background-radius: 30; -fx-background-color: #56bcc4; -fx-text-fill: #000000; -fx-padding: 8 25; -fx-cursor: hand;" text="Payer" />
             </VBox>
         </VBox>
     </center>

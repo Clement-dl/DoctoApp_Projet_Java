@@ -55,4 +55,25 @@ public class UtilisateurDAO {
 
         return utilisateur;
     }
+
+    // 🔥 NOUVELLE MÉTHODE
+    public static String getNomPrenomById(int idUtilisateur) {
+        String nomPrenom = "Inconnu";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rdvspe", "root", "");
+             PreparedStatement stmt = conn.prepareStatement("SELECT nom, prenom FROM utilisateur WHERE id_utilisateur = ?")) {
+
+            stmt.setInt(1, idUtilisateur);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                nomPrenom = rs.getString("nom") + " " + rs.getString("prenom");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nomPrenom;
+    }
 }

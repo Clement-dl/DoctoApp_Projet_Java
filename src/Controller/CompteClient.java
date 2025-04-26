@@ -1,7 +1,11 @@
 package Controller;
 
+import DAO.DatabaseConnection;
+import DAO.UtilisateurDAO;
 import Model.Patient;
 import Model.Session;
+import Model.RendezVous;
+import DAO.RDVDAO;
 import DAO.PatientDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,11 +14,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 
 public class CompteClient {
     @FXML
@@ -94,19 +100,23 @@ public class CompteClient {
     @FXML private Label telephoneLabel;
     @FXML private Label carteVitaleLabel;
     @FXML private Label mdpLabel;
+    @FXML private VBox rdvActuelsVBox;
+    @FXML private VBox historiqueVBox;
+    @FXML private VBox paiementVBox;
+
+    private Connection conn; // Ajout de la connexion à toute la classe
+    private RDVDAO rdvdao;
 
     public void initialize() {
-        // Vérifier si l'utilisateur est connecté
         if (Session.estConnecte()) {
-            // Récupère l'ID de l'utilisateur connecté
-            int utilisateurId = Session.getUtilisateurId();
+            conn = DatabaseConnection.getConnection(); // 🌟 Ouvre UNE seule connexion ici
+            rdvdao = new RDVDAO(conn); // 🌟 Instancie UNE seule fois ton RDVDAO
 
-            // Récupère les informations du patient à partir de l'ID
+            int utilisateurId = Session.getUtilisateurId();
             Patient patient = PatientDAO.getPatientById(utilisateurId);
 
-            // Vérifie si le patient existe
             if (patient != null) {
-                // Met à jour les labels avec les informations du patient
+                // Remplir infos patient
                 nomPrenomLabel.setText(patient.getNom() + " " + patient.getPrenom());
                 nomUtilisateurLabel.setText(patient.getNomUtilisateur());
                 adresseLabel.setText(patient.getAdresse());
@@ -114,14 +124,45 @@ public class CompteClient {
                 codePostalLabel.setText(patient.getCodePostal());
                 telephoneLabel.setText(patient.getTelephone());
                 carteVitaleLabel.setText(patient.getNumSecu() != null ? "Oui" : "Non");
-                mdpLabel.setText("**********"); // Par sécurité, on ne montre jamais le mot de passe
+                mdpLabel.setText("**********");
+
+                // Charger les rendez-vous actuels et historiques
+                chargerRendezVous(utilisateurId);
+                chargerHistorique(utilisateurId);
+
             } else {
-                // Si le patient n'est pas trouvé, on peut afficher un message d'erreur
                 System.out.println("Utilisateur non trouvé.");
             }
         } else {
-            // Si l'utilisateur n'est pas connecté, on peut rediriger vers la page de connexion
             System.out.println("Utilisateur non connecté.");
+        }
+    }
+
+    private void chargerRendezVous(int patientId) {
+        var rdvs = rdvdao.getRendezVousActuelsByPatientId(patientId);
+
+        System.out.println("RDVs trouvés : " + rdvs.size());
+
+        for (var rdv : rdvs) {
+            System.out.println("RDV => id: " + rdv.getId() + ", date: " + rdv.getDate() + ", heure: " + rdv.getHeure() + ", statut: " + rdv.getStatut());
+
+            String medecinNom = UtilisateurDAO.getNomPrenomById(rdv.getIdSpecialiste());
+            Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + " avec Dr " + medecinNom);
+            rdvActuelsVBox.getChildren().add(label);
+        }
+    }
+
+
+
+    private void chargerHistorique(int patientId) {
+        var rdvs = rdvdao.getRendezVousHistoriquesByPatientId(patientId); // 🌟 CORRECTION ici
+
+        if (rdvs != null) {
+            for (var rdv : rdvs) {
+                String medecinNom = UtilisateurDAO.getNomPrenomById(rdv.getIdSpecialiste());
+                Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + " avec Dr " + medecinNom);
+                historiqueVBox.getChildren().add(label);
+            }
         }
     }
 }
