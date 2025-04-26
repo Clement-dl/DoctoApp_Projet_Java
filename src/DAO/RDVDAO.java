@@ -33,7 +33,7 @@ public class RDVDAO {
         }
     }
 
-    // 🔥 NOUVEAU : récupérer les rendez-vous actuels
+
     public List<RendezVous> getRendezVousActuelsByPatientId(int idPatient) {
         List<RendezVous> liste = new ArrayList<>();
         String query = "SELECT * FROM rendezvous WHERE id_patient = ? AND ((Date > ?) OR (Date = ? AND Heure > ?)) AND (statut = 'En attente' OR statut = 'Confirmé')";
@@ -62,7 +62,7 @@ public class RDVDAO {
         return liste;
     }
 
-    // 🔥 NOUVEAU : récupérer l'historique des rendez-vous
+
     public List<RendezVous> getRendezVousHistoriquesByPatientId(int idPatient) {
         List<RendezVous> liste = new ArrayList<>();
         String query = "SELECT * FROM rendezvous WHERE id_patient = ? AND (Date < ? OR statut = 'Terminé')";
