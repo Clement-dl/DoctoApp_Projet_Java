@@ -1,142 +1,114 @@
-package DAO;
+package dao;
 
-import Model.Patient;
+import model.Patient;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PatientDAO {
+/**
+ * Implémentation de l'interface IPatientDAO pour accéder aux données des patients.
+ */
+public class PatientDAO implements IPatientDAO {
 
-    public static Patient getPatientById(int id) {
-        Patient patient = null;
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+    @Override
+    public void createPatient(Patient patient) throws SQLException {
+        String sql = "INSERT INTO patients (nom, prenom, email, motDePasse, statut) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, patient.getNom());
+            stmt.setString(2, patient.getPrenom());
+            stmt.setString(3, patient.getEmail());
+            stmt.setString(4, patient.getMotDePasse());
+            stmt.setString(5, patient.getStatut());
+            stmt.executeUpdate();
+        }
+    }
 
-        try {
-            conn = DatabaseConnection.getConnection(); // Assure-toi que tu as une méthode qui donne la connexion
-            String sql = "SELECT * FROM patient WHERE id_patient = ?";
-            stmt = conn.prepareStatement(sql);
+    @Override
+    public Patient getPatientById(int id) throws SQLException {
+        String sql = "SELECT * FROM patients WHERE idPatient = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            rs = stmt.executeQuery();
-
-
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                String nomUtilisateur = rs.getString("nom_utilisateur");
-                String nom = rs.getString("nom");
-                String prenom = rs.getString("prenom");
-                String adresse = rs.getString("adresse");
-                String ville = rs.getString("ville");
-                String codePostal = rs.getString("code_postal");
-                String telephone = rs.getString("telephone");
-                String numSecu = rs.getString("numero_securite_sociale");
-                String mdp = rs.getString("mot_de_passe");
-
-                patient = new Patient(nomUtilisateur, nom, prenom, adresse, ville, codePostal, telephone, numSecu, mdp);
-                patient.setId(id); // si tu as une méthode setId
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                return new Patient(
+                    rs.getInt("idPatient"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("motDePasse"),
+                    rs.getString("statut")
+                );
             }
         }
-
-        return patient;
+        return null;
     }
 
-
-    public void ajouter(Patient patient) throws SQLException {
-        Connection conn = null;
-        PreparedStatement stmtUtilisateur = null;
-        PreparedStatement stmtPatient = null;
-        ResultSet rs = null;
-
-        try {
-            conn = DatabaseConnection.getConnection();
-            conn.setAutoCommit(false); // Début transaction
-
-            // 1. Insertion dans utilisateur
-            String sqlUtilisateur = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?, ?, ?)";
-            stmtUtilisateur = conn.prepareStatement(sqlUtilisateur, Statement.RETURN_GENERATED_KEYS); // Ajout pour récupérer l'ID généré
-
-            stmtUtilisateur.setString(1, patient.getNom());
-            stmtUtilisateur.setString(2, patient.getPrenom());
-            stmtUtilisateur.setString(3, patient.getNomUtilisateur());
-            stmtUtilisateur.setString(4, patient.getMdp());
-            stmtUtilisateur.setString(5, "patient");
-
-            stmtUtilisateur.executeUpdate();
-
-            // Récupérer l'ID de l'utilisateur inséré
-            rs = stmtUtilisateur.getGeneratedKeys();
-            int idUtilisateur = 0;
+    @Override
+    public Patient getPatientByEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM patients WHERE email = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                idUtilisateur = rs.getInt(1); // ID généré pour l'utilisateur
+                return new Patient(
+                    rs.getInt("idPatient"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("motDePasse"),
+                    rs.getString("statut")
+                );
             }
+        }
+        return null;
+    }
 
-            // 2. Insertion dans patient
-            String sqlPatient = "INSERT INTO patient (id_patient, nom_utilisateur, nom, prenom, adresse, ville, code_postal, telephone, numero_securite_sociale, mot_de_passe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            stmtPatient = conn.prepareStatement(sqlPatient);
+    @Override
+    public List<Patient> getAllPatients() throws SQLException {
+        List<Patient> patients = new ArrayList<>();
+        String sql = "SELECT * FROM patients";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             Statement stmt = conn.createStatement(); 
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                patients.add(new Patient(
+                    rs.getInt("idPatient"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("motDePasse"),
+                    rs.getString("statut")
+                ));
+            }
+        }
+        return patients;
+    }
 
-            stmtPatient.setInt(1, idUtilisateur); // Utiliser l'ID de l'utilisateur pour le patient
-            stmtPatient.setString(2, patient.getNomUtilisateur());
-            stmtPatient.setString(3, patient.getNom());
-            stmtPatient.setString(4, patient.getPrenom());
-            stmtPatient.setString(5, patient.getAdresse());
-            stmtPatient.setString(6, patient.getVille());
-            stmtPatient.setString(7, patient.getCodePostal());
-            stmtPatient.setString(8, patient.getTelephone());
-            stmtPatient.setString(9, patient.getNumSecu());
-            stmtPatient.setString(10, patient.getMdp());
-
-            stmtPatient.executeUpdate();
-
-            conn.commit(); // Fin de transaction
-        } catch (SQLException e) {
-            if (conn != null) conn.rollback(); // Annule tout si erreur
-            throw e;
-        } finally {
-            if (rs != null) rs.close();
-            if (stmtUtilisateur != null) stmtUtilisateur.close();
-            if (stmtPatient != null) stmtPatient.close();
-            if (conn != null) conn.setAutoCommit(true); // Remet l'auto-commit par défaut
+    @Override
+    public void updatePatient(Patient patient) throws SQLException {
+        String sql = "UPDATE patients SET nom = ?, prenom = ?, email = ?, motDePasse = ?, statut = ? WHERE idPatient = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, patient.getNom());
+            stmt.setString(2, patient.getPrenom());
+            stmt.setString(3, patient.getEmail());
+            stmt.setString(4, patient.getMotDePasse());
+            stmt.setString(5, patient.getStatut());
+            stmt.setInt(6, patient.getIdPatient());
+            stmt.executeUpdate();
         }
     }
 
-    public int getDernierUtilisateurId() {
-        int id = -1;
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = DatabaseConnection.getConnection();
-            String sql = "SELECT id_patient FROM patient ORDER BY id_patient DESC LIMIT 1";
-            stmt = conn.prepareStatement(sql);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                id = rs.getInt("id_patient");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    @Override
+    public void deletePatient(int id) throws SQLException {
+        String sql = "DELETE FROM patients WHERE idPatient = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
         }
-
-        return id;
     }
-
 }
