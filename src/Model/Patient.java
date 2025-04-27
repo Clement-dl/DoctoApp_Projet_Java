@@ -1,49 +1,73 @@
 package Model;
 
+/**
+ * Classe représentant un patient de l'application DoctoApp.
+ */
 public class Patient {
-    private int id;
-    private String nomUtilisateur, adresse, ville, codePostal, telephone, numSecu, mdp, nom, prenom;
+    private int idPatient;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String motDePasse;
+    private String statut; // Ancien ou Nouveau patient
 
-    // Nouveau constructeur
-    public Patient(int id, String nomUtilisateur, String nom, String prenom, String adresse, String ville, String codePostal, String telephone, String numSecu, String mdp) {
-        this.id = id;
-        this.nomUtilisateur = nomUtilisateur;
+    public Patient() {
+    }
+
+    public Patient(int idPatient, String nom, String prenom, String email, String motDePasse, String statut) {
+        this.idPatient = idPatient;
         this.nom = nom;
         this.prenom = prenom;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.codePostal = codePostal;
-        this.telephone = telephone;
-        this.numSecu = numSecu;
-        this.mdp = mdp;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.statut = statut;
     }
 
-    public Patient(String nomUtilisateur, String nom, String prenom, String adresse, String ville, String codePostal, String telephone, String numSecu, String mdp) {
-        this.nomUtilisateur = nomUtilisateur;
+    public int getIdPatient() {
+        return idPatient;
+    }
+
+    public void setIdPatient(int idPatient) {
+        this.idPatient = idPatient;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
         this.prenom = prenom;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.codePostal = codePostal;
-        this.telephone = telephone;
-        this.numSecu = numSecu;
-        this.mdp = mdp;
     }
 
-    // Nouveaux getters
-    public int getId() {return id;}
-    public String getNom() { return nom; }
-    public String getPrenom() { return prenom; }
-    public String getNomUtilisateur() { return nomUtilisateur; }
-    public String getAdresse() { return adresse; }
-    public String getVille() { return ville; }
-    public String getCodePostal() { return codePostal; }
-    public String getTelephone() { return telephone; }
-    public String getNumSecu() { return numSecu; }
-    public String getMdp() { return mdp; }
-
-    public void setId(int id) {
-        this.id = id;
+    public String getEmail() {
+        return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
 }
