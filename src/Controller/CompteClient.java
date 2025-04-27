@@ -4,7 +4,6 @@ import DAO.DatabaseConnection;
 import DAO.UtilisateurDAO;
 import Model.Patient;
 import Model.Session;
-import Model.RendezVous;
 import DAO.RDVDAO;
 import DAO.PatientDAO;
 import javafx.event.ActionEvent;
@@ -104,13 +103,13 @@ public class CompteClient {
     @FXML private VBox historiqueVBox;
     @FXML private VBox paiementVBox;
 
-    private Connection conn; // Ajout de la connexion à toute la classe
+    private Connection conn; //  connexion à toute la classe
     private RDVDAO rdvdao;
 
     public void initialize() {
         if (Session.estConnecte()) {
-            conn = DatabaseConnection.getConnection(); // 🌟 Ouvre UNE seule connexion ici
-            rdvdao = new RDVDAO(conn); // 🌟 Instancie UNE seule fois ton RDVDAO
+            conn = DatabaseConnection.getConnection();
+            rdvdao = new RDVDAO(conn);
 
             int utilisateurId = Session.getUtilisateurId();
             Patient patient = PatientDAO.getPatientById(utilisateurId);
@@ -141,28 +140,36 @@ public class CompteClient {
     private void chargerRendezVous(int patientId) {
         var rdvs = rdvdao.getRendezVousActuelsByPatientId(patientId);
 
-        System.out.println("RDVs trouvés : " + rdvs.size());
-
         for (var rdv : rdvs) {
-            System.out.println("RDV => id: " + rdv.getId() + ", date: " + rdv.getDate() + ", heure: " + rdv.getHeure() + ", statut: " + rdv.getStatut());
-
             String medecinNom = UtilisateurDAO.getNomPrenomById(rdv.getIdSpecialiste());
-            Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + " avec Dr " + medecinNom);
-            rdvActuelsVBox.getChildren().add(label);
+
+            Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + "\navec Dr " + medecinNom);
+            label.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+
+            VBox container = new VBox(label);
+            container.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 10;");
+
+            rdvActuelsVBox.getChildren().add(container);
         }
     }
 
-
-
     private void chargerHistorique(int patientId) {
-        var rdvs = rdvdao.getRendezVousHistoriquesByPatientId(patientId); // 🌟 CORRECTION ici
+        var rdvs = rdvdao.getRendezVousHistoriquesByPatientId(patientId);
 
         if (rdvs != null) {
             for (var rdv : rdvs) {
                 String medecinNom = UtilisateurDAO.getNomPrenomById(rdv.getIdSpecialiste());
-                Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + " avec Dr " + medecinNom);
-                historiqueVBox.getChildren().add(label);
+
+                Label label = new Label(rdv.getDate() + " à " + rdv.getHeure() + "\navec Dr " + medecinNom);
+                label.setStyle("-fx-font-size: 14px; -fx-text-fill: black;");
+
+                VBox container = new VBox(label);
+                container.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 10;");
+
+                historiqueVBox.getChildren().add(container);
             }
         }
     }
+
+
 }

@@ -55,7 +55,7 @@ public class Dashboard {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
         try {
-            Connection conn = DatabaseConnection.getConnection(); // ta classe pour la connexion
+            Connection conn = DatabaseConnection.getConnection();
             String sql = "SELECT statut, COUNT(*) as total FROM rendezvous GROUP BY statut";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -157,7 +157,7 @@ public class Dashboard {
         imageView.setImage(fxImage);
     }
 
-    // (et tu laisses tes méthodes de navigation ici...)
+    // navigation
     @FXML
     public void goToAccueil(ActionEvent event) {
         try {
@@ -217,6 +217,25 @@ public class Dashboard {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("TopMedecinAdmin");
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goToAccueilAdmin(ActionEvent event) {
+        try {
+            File fxml = new File("src/View/AccueilAdmin.fxml");
+            URL fxmlUrl = fxml.toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("AccueilAdmin");
             stage.setScene(new Scene(root));
 
             stage.show();

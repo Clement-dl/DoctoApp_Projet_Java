@@ -18,20 +18,18 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Map;
+
 
 public class Paiement {
 
-    // 1. Ajouter ces attributs tout en haut de ta classe Paiement
+    //  Ajouter ces attributs tout en haut de ta classe Paiement
     private int idPatient;
     private int idSpecialiste;
     private LocalDate date;
     private java.time.LocalTime heure;
 
-    // 2. Ajouter ce setter
+    //  Ajouter ce setter
     public void setRDVDetails(int idPatient, int idSpecialiste, LocalDate date, java.time.LocalTime heure) {
         this.idPatient = idPatient;
         this.idSpecialiste = idSpecialiste;
@@ -39,7 +37,7 @@ public class Paiement {
         this.heure = heure;
     }
 
-    // 3. Méthode pour enregistrer le rendez-vous après paiement
+    // Méthode pour enregistrer le rendez-vous après paiement
     @FXML
     private void handlePayer(ActionEvent event) {
         // Vérification basique des champs de carte

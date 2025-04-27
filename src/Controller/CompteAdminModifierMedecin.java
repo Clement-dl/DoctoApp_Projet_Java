@@ -140,7 +140,7 @@ public class CompteAdminModifierMedecin {
             UtilisateurDAO utilisateurDAO = new UtilisateurDAO(DatabaseConnection.getConnection());
             utilisateurDAO.updateUtilisateur(utilisateur);
 
-            // Update specialisation (table specialiste)
+            // Update specialisation table specialiste
             SpecialisteDAO specialisteDAO = new SpecialisteDAO(DatabaseConnection.getConnection());
             specialisteDAO.updateSpecialisation(utilisateur.getId(), utilisateur.getSpecialite());
             specialisteDAO.updateQualification(utilisateur.getId(), utilisateur.getQualification());

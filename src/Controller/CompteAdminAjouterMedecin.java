@@ -117,8 +117,7 @@ public class CompteAdminAjouterMedecin {
             String specialite = specialiteField.getText();
             String qualification = qualificationField.getText();
 
-            // Tu peux choisir un mot de passe par défaut, ou un générateur
-            String motDePasse = "default123"; // à changer par la suite !
+            String motDePasse = "default123";
 
             Utilisateur medecin = new Utilisateur();
             medecin.setNom(nom);

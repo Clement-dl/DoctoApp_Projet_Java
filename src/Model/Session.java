@@ -1,7 +1,7 @@
 package Model;
 
 public class Session {
-    private static int utilisateurId;  // ou une instance de ton modèle Utilisateur si tu en as un
+    private static int utilisateurId;
     private static boolean estConnecte = false;
 
     public static void connecter(int idUtilisateur) {

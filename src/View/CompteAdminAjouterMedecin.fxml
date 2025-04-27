@@ -71,17 +71,6 @@
                         </VBox>
                     </VBox>
 
-                    <!-- Calendrier -->
-                    <VBox alignment="CENTER" spacing="15">
-
-                        <VBox alignment="CENTER" spacing="10">
-                            <ImageView fx:id="imageMedecinView" fitHeight="150.0" fitWidth="150.0" preserveRatio="true" style="-fx-border-color: white; -fx-border-width: 2;" />
-                            <Button text="Choisir une image" onAction="#chargerImageMedecin"
-                                    style="-fx-background-radius: 20; -fx-background-color: #ffffff; -fx-text-fill: #ff6060;" />
-                            <Label fx:id="descriptionMedecinLabel" text="Aucune description pour le moment."
-                                   style="-fx-font-size: 14px; -fx-text-fill: white; -fx-padding: 0 20 0 20;" wrapText="true" maxWidth="400.0" />
-                        </VBox>
-                    </VBox>
 
                     <!-- Ajout image + description -->
                 </HBox>

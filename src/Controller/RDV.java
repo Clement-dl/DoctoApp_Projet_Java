@@ -81,8 +81,7 @@ public class RDV {
     public void initialize() {
         setupDates();
 
-        // Retiré le rdv fictif ici
-        // rdvsExistants.add(LocalDateTime.of(2025, 4, 25, 15, 0));
+
 
         boutonInfos.put(lundiButton, new String[]{"Lundi", null});
         boutonInfos.put(mardiButton, new String[]{"Mardi", null});
@@ -189,8 +188,7 @@ public class RDV {
     private void mettreAJourDisponibilites() {
         if (selectedJour == null) return;
 
-        // UTILISER currentMonday AU LIEU DE recalculer
-        LocalDate monday = currentMonday; // <--- CORRECTION
+        LocalDate monday = currentMonday;
 
         Map<String, Integer> joursMap = Map.of(
                 "Lundi", 0,
@@ -256,7 +254,7 @@ public class RDV {
             nomLabel.setText(specialiste.getNom() + " " + specialiste.getPrenom());
             specialiteLabel.setText(specialiste.getSpecialisation());
             informationsTextArea.setText(specialiste.getQualification());
-            chargerRDVsSpecialiste(); // <- Ajout important ici
+            chargerRDVsSpecialiste();
         }
     }
 

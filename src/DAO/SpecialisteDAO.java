@@ -15,7 +15,7 @@ public class SpecialisteDAO {
     }
     public List<Specialiste> getSpecialistesParSpecialite(String specialite) {
         List<Specialiste> liste = new ArrayList<>();
-        String query = "SELECT s.id_specialiste, s.specialisation, s.qualification, u.nom, u.prenom FROM specialiste s " +
+        String query = "SELECT s.id_specialiste, s.specialisation, s.qualification, u.nom, u.prenom, s.image FROM specialiste s " +
                 "JOIN utilisateur u ON s.id_specialiste = u.id_utilisateur WHERE s.specialisation = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -28,8 +28,10 @@ public class SpecialisteDAO {
                         rs.getString("specialisation"),
                         rs.getString("qualification"),
                         rs.getString("nom"),
-                        rs.getString("prenom")
+                        rs.getString("prenom"),
+                        rs.getString("image")
                 );
+
                 liste.add(sp);
             }
         } catch (SQLException e) {

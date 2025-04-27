@@ -59,13 +59,13 @@ public class Connexion {
                 e.printStackTrace();
             }
         } else {
-            // 1) on garde l'utilisateur dans Connexion
+            // on garde l'utilisateur dans Connexion
             utilisateurConnecte = utilisateur;
 
-            // 2) on initie la session avec son ID
+            // on initie la session avec son ID
             Session.connecter(utilisateur.getId());
 
-            // 3) on redirige
+            // on redirige
             try {
                 String fxmlFile = switch (type) {
                     case "Patient" -> "/View/CompteClient.fxml";
@@ -131,23 +131,6 @@ public class Connexion {
         alert.showAndWait();
     }
 
-    public void goToPaiement(ActionEvent event) {
-        try {
-            File fxml = new File("src/View/Paiement.fxml");
-            URL fxmlUrl = fxml.toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
-            Parent root = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Paiement");
-            stage.setScene(new Scene(root));
-
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void goToTopMedecin(ActionEvent event) {
         try {

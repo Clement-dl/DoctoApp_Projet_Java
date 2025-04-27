@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.SpecialisteDAO;
+import Model.Session;
 import Model.Specialiste;
 import Model.Utilisateur;
 import javafx.event.ActionEvent;
@@ -93,23 +94,35 @@ public class Recherche implements Initializable {
             StackPane stackPane = new StackPane();
             stackPane.setPrefSize(110, 110);
             stackPane.setStyle("-fx-border-color: #a9a9a9; -fx-border-radius: 50; -fx-background-radius: 50;");
-            ImageView photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
-            photo.setFitHeight(48);
-            photo.setFitWidth(48);
-            stackPane.getChildren().add(photo);
+            ImageView photo;
 
+            if (sp.getImage() != null && !sp.getImage().isEmpty() && !sp.getImage().equals("default")) {
+                // Si une image personnalisée existe
+                File imageFile = new File("src/Images/" + sp.getImage());
+                if (imageFile.exists()) {
+                    photo = new ImageView(new Image(imageFile.toURI().toString()));
+                } else {
+                    // Si le fichier n'existe pas, utiliser l'image par défaut
+                    photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
+                }
+            } else {
+                // Sinon utiliser image par défaut
+                photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
+            }
+            photo.setFitHeight(64);
+            photo.setFitWidth(64);
+            stackPane.getChildren().add(photo);
             Label info = new Label(sp.getNomComplet() + "\n" + sp.getQualification());
             info.setAlignment(Pos.CENTER_LEFT);
             info.setMinHeight(78);
             info.setMinWidth(430);
             info.setTranslateX(50);
-            info.setStyle("-fx-background-color: #d5e9e8; -fx-background-radius: 15; -fx-padding: 10 20;");
-
+            info.setStyle("-fx-background-color: #a9a9a9; -fx-background-radius: 15; -fx-padding: 10 20;");
             Button rdvButton = new Button("Prendre rendez-vous");
             rdvButton.setMinHeight(40);
             rdvButton.setMinWidth(134);
             rdvButton.setTranslateX(100);
-            rdvButton.setStyle("-fx-background-color: #33958f; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;");
+            rdvButton.setStyle("-fx-background-color: #434343; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;");
             rdvButton.setOnAction(e -> goToRDV(e, sp));
 
             hbox.getChildren().addAll(stackPane, info, rdvButton);
@@ -153,17 +166,38 @@ public class Recherche implements Initializable {
     @FXML
     private void goToRDV(ActionEvent event, Specialiste specialiste) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/RDV.fxml"));
-            Parent root = loader.load();
+            File fxml;
+            FXMLLoader loader;
 
-            RDV controller = loader.getController();
-            controller.setSpecialiste(specialiste);
-            controller.setUtilisateur(Connexion.getUtilisateurConnecte());
+            if (Session.estConnecte()) {
+                // Si l'utilisateur est connecté, aller vers RDV.fxml
+                fxml = new File("src/View/RDV.fxml");
+                URL fxmlUrl = fxml.toURI().toURL();
+                loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("RDV");
-            stage.setScene(new Scene(root));
-            stage.show();
+                RDV controller = loader.getController();
+                controller.setSpecialiste(specialiste);
+                controller.setUtilisateur(Connexion.getUtilisateurConnecte()); // à adapter si besoin
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("RDV");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } else {
+                // Sinon, aller vers RDVPasConnecter.fxml
+                fxml = new File("src/View/RDVPasConnecté.fxml");
+                URL fxmlUrl = fxml.toURI().toURL();
+                loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Connexion requise");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

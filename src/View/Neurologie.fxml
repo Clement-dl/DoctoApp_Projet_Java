@@ -24,7 +24,7 @@
                 </Button>
             </StackPane>
 
-            <Button onAction="#goToPaiement" style="-fx-background-color: transparent; -fx-cursor: hand;">
+            <Button style="-fx-background-color: transparent; -fx-cursor: hand;">
                 <graphic>
                     <ImageView fitHeight="64.0" fitWidth="64.0">
                         <image><Image url="@../Images/carte-de-credit.png" /></image>

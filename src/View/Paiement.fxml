@@ -60,31 +60,31 @@
                         <!-- Les 8 champs avec hauteur augmentée -->
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
-                                <image><Image url="@../Images/id-card-clip-alt.png" /></image>
+                                <image><Image url="@../Images/cards-blank.png" /></image>
                             </ImageView>
                             <TextField fx:id="typeCarteField" alignment="CENTER" maxWidth="400.0" prefWidth="310.0" promptText="Type de carte de paiement" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
-                                <image><Image url="@../Images/world.png" /></image>
+                                <image><Image url="@../Images/carte-de-credit.png" /></image>
                             </ImageView>
                             <TextField fx:id="numeroCarteField" alignment="CENTER" prefWidth="310.0" promptText="Numéros de carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
-                                <image><Image url="@../Images/city.png" /></image>
+                                <image><Image url="@../Images/id-card-clip-alt.png" /></image>
                             </ImageView>
                             <TextField fx:id="nomCarteField" alignment="CENTER" prefWidth="310.0" promptText="Nom sur la carte" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
-                                <image><Image url="@../Images/postal-address.png" /></image>
+                                <image><Image url="@../Images/calendrier.png" /></image>
                             </ImageView>
                             <TextField fx:id="expirationField" alignment="CENTER" prefWidth="310.0" promptText="Date D'expiration" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="400" prefHeight="40" spacing="10" style="-fx-background-radius: 30; -fx-background-color: white; -fx-padding: 8 12;">
                             <ImageView fitHeight="24.0" fitWidth="24.0">
-                                <image><Image url="@../Images/phone-flip.png" /></image>
+                                <image><Image url="@../Images/controle-circulaire-binaire.png" /></image>
                             </ImageView>
                             <TextField fx:id="codeSecuriteField" alignment="CENTER" prefWidth="310.0" promptText="Code de Sécurité" style="-fx-background-color: transparent; -fx-font-size: 14;" />
                         </HBox>

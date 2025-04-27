@@ -249,7 +249,7 @@ public class Accueil {
 
     @FXML
     public void handleSearch(ActionEvent event) {
-        String maRecherche = searchBar.getText().trim(); // Utiliser searchBar ici !
+        String maRecherche = searchBar.getText().trim();
 
         if (!maRecherche.isEmpty()) {
             try {
@@ -262,7 +262,6 @@ public class Accueil {
                 // Récupérer le contrôleur de Recherche.fxml
                 Recherche rechercheController = loader.getController();
 
-                // DÉCIDER quoi faire : ici on tente d'abord par spécialité
                 SpecialisteDAO dao = new SpecialisteDAO(DriverManager.getConnection("jdbc:mysql://localhost:3306/rdvspe", "root", ""));
                 if (!dao.getSpecialistesParSpecialite(maRecherche).isEmpty()) {
                     rechercheController.setRechercheSpecialite(maRecherche);

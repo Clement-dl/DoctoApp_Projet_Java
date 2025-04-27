@@ -67,7 +67,7 @@ public class PatientDAO {
             conn = DatabaseConnection.getConnection();
             conn.setAutoCommit(false); // Début transaction
 
-            // 1. Insertion dans utilisateur
+            //  Insertion dans utilisateur
             String sqlUtilisateur = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?, ?, ?)";
             stmtUtilisateur = conn.prepareStatement(sqlUtilisateur, Statement.RETURN_GENERATED_KEYS);
 
@@ -86,7 +86,7 @@ public class PatientDAO {
                 idUtilisateur = rs.getInt(1); // ID généré pour l'utilisateur
             }
 
-            // 2. Insertion dans patient
+            //  Insertion dans patient
             String sqlPatient = "INSERT INTO patient (id_patient, nom_utilisateur, nom, prenom, adresse, ville, code_postal, telephone, numero_securite_sociale, mot_de_passe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmtPatient = conn.prepareStatement(sqlPatient);
 

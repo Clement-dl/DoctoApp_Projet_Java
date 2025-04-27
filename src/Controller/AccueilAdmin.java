@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.SpecialisteDAO;
 import Model.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,13 +8,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.DriverManager;
 
 public class AccueilAdmin {
+    @FXML
+    private ImageView banniereImage;
+
+    @FXML
+    public void initialize() {
+        Rectangle clip = new Rectangle(banniereImage.getFitWidth(), banniereImage.getFitHeight());
+        clip.setArcWidth(40);
+        clip.setArcHeight(40);
+        banniereImage.setClip(clip);
+    }
+
     @FXML
     public void goToGeneralisteAdmin(ActionEvent event) {
         try {
@@ -225,6 +241,51 @@ public class AccueilAdmin {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private javafx.scene.control.TextField searchBar;
+
+
+    @FXML
+    public void handleSearch(ActionEvent event) {
+        String maRecherche = searchBar.getText().trim(); // Utiliser searchBar ici !
+
+        if (!maRecherche.isEmpty()) {
+            try {
+                // Charger Recherche.fxml
+                File fxml = new File("src/View/Recherche.fxml");
+                URL fxmlUrl = fxml.toURI().toURL();
+                FXMLLoader loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
+
+                // Récupérer le contrôleur de Recherche.fxml
+                Recherche rechercheController = loader.getController();
+
+                SpecialisteDAO dao = new SpecialisteDAO(DriverManager.getConnection("jdbc:mysql://localhost:3306/rdvspe", "root", ""));
+                if (!dao.getSpecialistesParSpecialite(maRecherche).isEmpty()) {
+                    rechercheController.setRechercheSpecialite(maRecherche);
+                } else {
+                    rechercheController.setNomRecherche(maRecherche);
+                }
+
+                // Changer de scène
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Champ vide");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer une recherche.");
+            alert.showAndWait();
         }
     }
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Session;
 import Model.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,9 +55,23 @@ public class Generaliste {
                 stackPane.setPrefWidth(110);
                 stackPane.setMinHeight(115);
                 stackPane.setStyle("-fx-border-color: #a9a9a9; -fx-border-radius: 50; -fx-background-radius: 50;");
-                ImageView photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
-                photo.setFitHeight(48);
-                photo.setFitWidth(48);
+                ImageView photo;
+
+                if (sp.getImage() != null && !sp.getImage().isEmpty() && !sp.getImage().equals("default")) {
+                    // Si une image personnalisée existe
+                    File imageFile = new File("src/Images/" + sp.getImage());
+                    if (imageFile.exists()) {
+                        photo = new ImageView(new Image(imageFile.toURI().toString()));
+                    } else {
+                        // Si le fichier n'existe pas, utiliser l'image par défaut
+                        photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
+                    }
+                } else {
+                    // Sinon utiliser image par défaut
+                    photo = new ImageView(new Image(getClass().getResourceAsStream("/Images/compte.png")));
+                }
+                photo.setFitHeight(64);
+                photo.setFitWidth(64);
                 stackPane.getChildren().add(photo);
                 Label info = new Label(sp.getNomComplet() + "\n" + sp.getQualification());
                 info.setAlignment(Pos.CENTER);
@@ -82,20 +97,37 @@ public class Generaliste {
     @FXML
     private void goToRDV(ActionEvent event, Specialiste specialiste) {
         try {
-            File fxml = new File("src/View/RDV.fxml");
-            URL fxmlUrl = fxml.toURI().toURL();
-            FXMLLoader loader = new FXMLLoader(fxmlUrl);
-            Parent root = loader.load();
+            File fxml;
+            FXMLLoader loader;
 
-            RDV controller = loader.getController();
-            controller.setSpecialiste(specialiste);
-            controller.setUtilisateur(Connexion.getUtilisateurConnecte()); // si méthode disponible
+            if (Session.estConnecte()) {
+                // Si l'utilisateur est connecté, aller vers RDV.fxml
+                fxml = new File("src/View/RDV.fxml");
+                URL fxmlUrl = fxml.toURI().toURL();
+                loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
 
+                RDV controller = loader.getController();
+                controller.setSpecialiste(specialiste);
+                controller.setUtilisateur(Connexion.getUtilisateurConnecte()); // à adapter si besoin
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("RDV");
-            stage.setScene(new Scene(root));
-            stage.show();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("RDV");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } else {
+                // Sinon, aller vers RDVPasConnecter.fxml
+                fxml = new File("src/View/RDVPasConnecté.fxml");
+                URL fxmlUrl = fxml.toURI().toURL();
+                loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Connexion requise");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
