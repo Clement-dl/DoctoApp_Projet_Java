@@ -62,26 +62,16 @@
                                 <image><Image url="@../Images/info.png" /></image>
                             </ImageView>
                             <Label style="-fx-font-weight: bold;" text="Information" />
-                            <Button style="-fx-background-color: transparent;">
-                                <graphic>
-                                    <StackPane>
-                                        <Circle radius="16" fill="#ffc7c7"/>
-                                        <ImageView fitHeight="24" fitWidth="24" rotate="30">
-                                            <image><Image url="@../Images/rotate-right.png" /></image>
-                                        </ImageView>
-                                    </StackPane>
-                                </graphic>
-                            </Button>
                         </HBox>
                         <VBox spacing="5">
-                            <Button text="Nom et Prénom" />
-                            <Button text="Adresse ligne 1" />
-                            <Button text="Ville" />
-                            <Button text="Code Postal" />
-                            <Button text="Pays" />
-                            <Button text="Numéro de Téléphone" />
-                            <Button text="Carte Vitale" />
-                            <Button text="Mot de passe" />
+                            <TextField fx:id="nomField" text="Nom" />
+                            <TextField fx:id="prenomField" text="prénom" />
+                            <TextField fx:id="adresseField" text="Adresse ligne 1" />
+                            <TextField fx:id="villeField" text="Ville" />
+                            <TextField fx:id="codePostalField" text="Code Postal" />
+                            <TextField fx:id="numeroTelephoneField" text="Numéro de Téléphone" />
+                            <TextField fx:id="carteVitaleField" text="Carte Vitale" />
+                            <TextField fx:id="motDePasseField" text="Mot de passe" />
                         </VBox>
                     </VBox>
 
@@ -108,7 +98,7 @@
                     </VBox>
                 </HBox>
                 <HBox alignment="CENTER" spacing="40">
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier" />
+                    <Button onAction="#modifierClient" prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier" />
                 </HBox>
             </VBox>
         </VBox>

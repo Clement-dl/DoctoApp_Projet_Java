@@ -58,28 +58,13 @@
                                 <Image url="@../Images/chercher.png" />
                             </image>
                         </ImageView>
-                        <TextField fx:id="searchBar" promptText="Rechercher un médecin..." style="-fx-font-size: 16px; -fx-background-radius: 20; -fx-background-color: #f0f0f0; -fx-padding: 5 10;" prefWidth="400.0" />
+                        <TextField fx:id="searchBar" onAction="#handleSearch" promptText="Rechercher un médecin..." style="-fx-font-size: 16px; -fx-background-radius: 20; -fx-background-color: #f0f0f0; -fx-padding: 5 10;" prefWidth="400.0" />
                     </HBox>
                 </StackPane>
 
 
                 <VBox alignment="TOP_CENTER" minWidth="912.0" prefHeight="539.0" prefWidth="912.0" spacing="20.0" style="-fx-background-color: #cecece; -fx-padding: 30; -fx-background-radius: 20;">
-                    <!-- Carte Médecin (à dupliquer dynamiquement) -->
-                    <VBox spacing="15.0">
-                        <HBox alignment="CENTER_LEFT" maxHeight="128.0" maxWidth="848.0" minHeight="128.0" minWidth="843.0" prefHeight="128.0" prefWidth="843.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-padding: 10;">
-                            <StackPane minHeight="115.0" prefHeight="110.0" prefWidth="110.0" style="-fx-border-color: #a9a9a9; -fx-border-radius: 50; -fx-background-radius: 50;">
-                                <ImageView fitHeight="48.0" fitWidth="48.0">
-                                    <image>
-                                        <Image url="@../Images/compte.png" />
-                                    </image>
-                                </ImageView>
-                            </StackPane>
-                            <Label alignment="CENTER" minHeight="78.0" minWidth="430.0" style="-fx-background-color: #cecece; -fx-background-radius: 15; -fx-padding: 10 20;" text="Information sur le Médecin" translateX="50.0" />
-                            <Button fx:id="rdvButton" onAction="#goToRDV" minHeight="40.0" minWidth="134.0" style="-fx-background-color: #707070; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 5 10; -fx-cursor: hand;" text="Prendre rendez-vous" translateX="100.0"/>
-                        </HBox>
-
-                        <!-- Répéter dynamiquement les HBox ci-dessus pour chaque médecin -->
-                    </VBox>
+                    <VBox fx:id="medecinListContainer" spacing="10" alignment="TOP_CENTER" />
 
                     <!-- Flèches de pagination avec images -->
                     <HBox alignment="CENTER" spacing="50.0" style="-fx-padding: 10;">

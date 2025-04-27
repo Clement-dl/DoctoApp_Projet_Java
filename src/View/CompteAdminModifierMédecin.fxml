@@ -63,15 +63,14 @@
                             <Label style="-fx-font-weight: bold;" text="Information" />
                         </HBox>
                         <VBox alignment="TOP_CENTER" maxWidth="200.0" prefWidth="200.0" spacing="30.0">
-                            <Button text="Nom et Prénom" />
-                            <Button text="Adresse ligne 1" />
-                            <Button text="Ville" />
-                            <Button text="Code Postal" />
-                            <Button text="Pays" />
-                            <Button text="Numéro de Téléphone" />
-                            <Button text="Carte Vitale" />
-                            <Button text="Mot de passe" />
+                            <TextField fx:id="nomField" promptText="Nom" />
+                            <TextField fx:id="prenomField" promptText="Prénom" />
+                            <TextField fx:id="emailField" promptText="Email" />
+                            <TextField fx:id="specialiteField" promptText="Spécialisation" />
+                            <TextField fx:id="qualificationField" promptText="Qualification" />
+
                         </VBox>
+
                     </VBox>
 
                     <!-- Calendrier -->
@@ -145,7 +144,7 @@
 
                 <!-- Bouton Modifier -->
                 <HBox alignment="CENTER" spacing="40">
-                    <Button prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier" />
+                    <Button onAction="#modifierMedecin" prefWidth="200.0" prefHeight="40.0" style="-fx-background-radius: 30; -fx-background-color: #ff7777; -fx-text-fill: black;" text="Modifier" />
                 </HBox>
             </VBox>
         </VBox>

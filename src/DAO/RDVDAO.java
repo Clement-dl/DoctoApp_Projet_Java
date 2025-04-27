@@ -88,4 +88,41 @@ public class RDVDAO {
         }
         return liste;
     }
+
+    public List<RendezVous> getAllRendezVous() {
+        List<RendezVous> liste = new ArrayList<>();
+        String query = "SELECT * FROM rendezvous";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                RendezVous rdv = new RendezVous(
+                        rs.getInt("id_rdv"),
+                        rs.getInt("id_patient"),
+                        rs.getInt("id_specialiste"),
+                        rs.getDate("Date").toLocalDate(),
+                        rs.getTime("Heure").toLocalTime(),
+                        rs.getString("statut")
+                );
+                liste.add(rdv);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return liste;
+    }
+
+    public boolean supprimerRDV(int idRdv) {
+        String query = "DELETE FROM rendezvous WHERE id_rdv = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, idRdv);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

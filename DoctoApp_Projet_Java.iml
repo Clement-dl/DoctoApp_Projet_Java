@@ -7,7 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="mysql-connector-j-9.2.0" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-j-9.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jfreechart-1.0.19" level="project" />
+    <orderEntry type="library" exported="" name="jcommon-1.0.23" level="project" />
   </component>
 </module>

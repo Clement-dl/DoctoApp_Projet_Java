@@ -45,7 +45,7 @@
 
     <!-- Centre de la page -->
     <center>
-        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: rgba(191,191,191,0.36);" VBox.vgrow="ALWAYS">
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: rgba(177,177,177,0.36);" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>

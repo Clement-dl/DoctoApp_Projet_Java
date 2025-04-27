@@ -1,9 +1,15 @@
 package DAO;
 
 import Model.Patient;
+import Model.Utilisateur;
+
 import java.sql.*;
 
+
+
 public class PatientDAO {
+
+    private Connection conn;
 
     public static Patient getPatientById(int id) {
         Patient patient = null;
@@ -12,7 +18,7 @@ public class PatientDAO {
         ResultSet rs = null;
 
         try {
-            conn = DatabaseConnection.getConnection(); // Assure-toi que tu as une méthode qui donne la connexion
+            conn = DatabaseConnection.getConnection();
             String sql = "SELECT * FROM patient WHERE id_patient = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -31,7 +37,7 @@ public class PatientDAO {
                 String mdp = rs.getString("mot_de_passe");
 
                 patient = new Patient(nomUtilisateur, nom, prenom, adresse, ville, codePostal, telephone, numSecu, mdp);
-                patient.setId(id); // si tu as une méthode setId
+                patient.setId(id);
 
             }
 
@@ -63,7 +69,7 @@ public class PatientDAO {
 
             // 1. Insertion dans utilisateur
             String sqlUtilisateur = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, type_utilisateur) VALUES (?, ?, ?, ?, ?)";
-            stmtUtilisateur = conn.prepareStatement(sqlUtilisateur, Statement.RETURN_GENERATED_KEYS); // Ajout pour récupérer l'ID généré
+            stmtUtilisateur = conn.prepareStatement(sqlUtilisateur, Statement.RETURN_GENERATED_KEYS);
 
             stmtUtilisateur.setString(1, patient.getNom());
             stmtUtilisateur.setString(2, patient.getPrenom());
@@ -84,7 +90,7 @@ public class PatientDAO {
             String sqlPatient = "INSERT INTO patient (id_patient, nom_utilisateur, nom, prenom, adresse, ville, code_postal, telephone, numero_securite_sociale, mot_de_passe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmtPatient = conn.prepareStatement(sqlPatient);
 
-            stmtPatient.setInt(1, idUtilisateur); // Utiliser l'ID de l'utilisateur pour le patient
+            stmtPatient.setInt(1, idUtilisateur);
             stmtPatient.setString(2, patient.getNomUtilisateur());
             stmtPatient.setString(3, patient.getNom());
             stmtPatient.setString(4, patient.getPrenom());
@@ -97,15 +103,15 @@ public class PatientDAO {
 
             stmtPatient.executeUpdate();
 
-            conn.commit(); // Fin de transaction
+            conn.commit();
         } catch (SQLException e) {
-            if (conn != null) conn.rollback(); // Annule tout si erreur
+            if (conn != null) conn.rollback();
             throw e;
         } finally {
             if (rs != null) rs.close();
             if (stmtUtilisateur != null) stmtUtilisateur.close();
             if (stmtPatient != null) stmtPatient.close();
-            if (conn != null) conn.setAutoCommit(true); // Remet l'auto-commit par défaut
+            if (conn != null) conn.setAutoCommit(true);
         }
     }
 
@@ -137,6 +143,35 @@ public class PatientDAO {
         }
 
         return id;
+    }
+
+    public static void updatePatient(Utilisateur utilisateur) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DatabaseConnection.getConnection(); // Ouvre une connexion ici
+            String sql = "UPDATE patient SET telephone = ?, adresse = ?, ville = ?, code_postal = ?, numero_securite_sociale = ? WHERE id_patient = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, utilisateur.getTelephone());
+            stmt.setString(2, utilisateur.getAdresse());
+            stmt.setString(3, utilisateur.getVille());
+            stmt.setString(4, utilisateur.getCode_postal());
+            stmt.setString(5, utilisateur.getNumero_securite_sociale());
+            stmt.setInt(6, utilisateur.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

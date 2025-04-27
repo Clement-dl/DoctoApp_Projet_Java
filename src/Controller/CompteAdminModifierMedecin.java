@@ -1,5 +1,11 @@
 package Controller;
 
+import DAO.DatabaseConnection;
+import DAO.PatientDAO;
+import DAO.SpecialisteDAO;
+import DAO.UtilisateurDAO;
+import Model.Specialiste;
+import Model.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -88,6 +95,59 @@ public class CompteAdminModifierMedecin {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private TextField nomField;
+    @FXML
+    private TextField prenomField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField specialiteField;
+    @FXML
+    private TextField qualificationField;
+
+    private Utilisateur utilisateur;
+
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+        afficherDetails();
+    }
+
+    private void afficherDetails() {
+        if (utilisateur != null) {
+            nomField.setText(utilisateur.getNom());
+            prenomField.setText(utilisateur.getPrenom());
+            emailField.setText(utilisateur.getEmail());
+            specialiteField.setText(utilisateur.getSpecialite());
+            qualificationField.setText(utilisateur.getQualification());
+        }
+    }
+
+    @FXML
+    private void modifierMedecin(ActionEvent event) {
+        if (utilisateur != null) {
+            utilisateur.setNom(nomField.getText());
+            utilisateur.setPrenom(prenomField.getText());
+            utilisateur.setEmail(emailField.getText());
+            utilisateur.setSpecialite(specialiteField.getText());
+            utilisateur.setQualification(qualificationField.getText());
+
+            // Update utilisateur
+            UtilisateurDAO utilisateurDAO = new UtilisateurDAO(DatabaseConnection.getConnection());
+            utilisateurDAO.updateUtilisateur(utilisateur);
+
+            // Update specialisation (table specialiste)
+            SpecialisteDAO specialisteDAO = new SpecialisteDAO(DatabaseConnection.getConnection());
+            specialisteDAO.updateSpecialisation(utilisateur.getId(), utilisateur.getSpecialite());
+            specialisteDAO.updateQualification(utilisateur.getId(), utilisateur.getQualification());
+            specialisteDAO.updateNom(utilisateur.getId(),utilisateur.getNom());
+            specialisteDAO.updatePrenom(utilisateur.getId(),utilisateur.getPrenom());
+
+            System.out.println("Médecin modifié avec succès !");
         }
     }
 }

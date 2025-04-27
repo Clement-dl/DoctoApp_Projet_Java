@@ -45,32 +45,33 @@
 
     <!-- Centre de la page -->
     <center>
-        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: rgba(191,191,191,0.36);" VBox.vgrow="ALWAYS">
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: rgba(177,177,177,0.36);" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
+            <StackPane>
+                <HBox alignment="CENTER" maxHeight="91.0" maxWidth="575.0" minHeight="91.0" minWidth="575.0" prefHeight="91.0" prefWidth="575.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-padding: 10 30;">
+                    <ImageView fitHeight="48.0" fitWidth="48.0">
+                        <image>
+                            <Image url="@../Images/chercher.png" />
+                        </image>
+                    </ImageView>
+                    <TextField fx:id="searchBar" promptText="Rechercher un médecin..." style="-fx-font-size: 16px; -fx-background-radius: 20; -fx-background-color: #f0f0f0; -fx-padding: 5 10;" prefWidth="400.0" onAction="#handleSearch" />
+                </HBox>
+            </StackPane>
 
-            <!-- Barre de recherche -->
-            <HBox alignment="CENTER" spacing="10">
-                <ImageView fitHeight="30" fitWidth="30">
-                    <image><Image url="@../Images/chercher.png" /></image>
+            <StackPane prefHeight="300" prefWidth="1000" style="-fx-background-color: transparent;">
+                <ImageView fx:id="banniereImage" fitWidth="1000" fitHeight="300">
+                    <image>
+                        <Image url="@../Images/coronavirus_gestes_barrieres_2021.png" />
+                    </image>
                 </ImageView>
-                <TextField promptText="Recherche" style="-fx-font-size: 16px; -fx-pref-width: 400px;" />
-            </HBox>
+            </StackPane>
 
-            <!-- Bannière -->
-            <Pane prefHeight="100" prefWidth="960.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccc;">
-                <Label layoutX="180" layoutY="40" text="Images ou bannière" />
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
-            </Pane>
+
 
             <!-- Conteneur centré -->
             <HBox alignment="CENTER">
-                <VBox.margin>
-                    <Insets top="230" />
-                </VBox.margin>
                 <GridPane hgap="130" vgap="30">
                     <columnConstraints>
                         <ColumnConstraints halignment="CENTER" />
