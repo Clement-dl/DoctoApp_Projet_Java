@@ -1,0 +1,225 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 15 avr. 2025 à 12:42
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `rdvspe`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `administrateur`
+--
+
+CREATE TABLE `administrateur` (
+  `id_admin` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `agenda`
+-- (Voir ci-dessous la vue réelle)
+--
+CREATE TABLE `agenda` (
+`id_rdv` int(11)
+,`id_patient` int(11)
+,`id_specialiste` int(11)
+,`id_lieu` int(11)
+,`date_heure` datetime
+,`statut` enum('Confirmé','Annulé','En attente')
+,`notes` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dossier`
+--
+
+CREATE TABLE `dossier` (
+  `id_dossier` int(11) NOT NULL,
+  `id_patient` int(11) NOT NULL,
+  `id_specialiste` int(11) NOT NULL,
+  `date_consultation` datetime NOT NULL,
+  `diagnostic` text DEFAULT NULL,
+  `traitement` text DEFAULT NULL,
+  `observations` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `lieu`
+--
+
+CREATE TABLE `lieu` (
+  `id_lieu` int(11) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `ville` varchar(50) NOT NULL,
+  `code_postal` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `patient`
+--
+
+CREATE TABLE `patient` (
+  `id_patient` int(11) NOT NULL,
+  `type_patient` enum('Nouveau','Ancien') NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `rendezvous`
+--
+
+CREATE TABLE `rendezvous` (
+  `id_rdv` int(11) NOT NULL,
+  `id_patient` int(11) DEFAULT NULL,
+  `id_specialiste` int(11) DEFAULT NULL,
+  `id_lieu` int(11) DEFAULT NULL,
+  `date_heure` datetime NOT NULL,
+  `statut` enum('Confirmé','Annulé','En attente') DEFAULT 'En attente',
+  `notes` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `specialiste`
+--
+
+CREATE TABLE `specialiste` (
+  `id_specialiste` int(11) NOT NULL,
+  `specialisation` varchar(100) NOT NULL,
+  `qualification` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mot_de_passe` varchar(255) NOT NULL,
+  `type_utilisateur` enum('Patient','Administrateur','Specialiste') NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `agenda`
+--
+DROP TABLE IF EXISTS `agenda`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `agenda`  AS SELECT `r`.`id_rdv` AS `id_rdv`, `r`.`id_patient` AS `id_patient`, `r`.`id_specialiste` AS `id_specialiste`, `r`.`id_lieu` AS `id_lieu`, `r`.`date_heure` AS `date_heure`, `r`.`statut` AS `statut`, `r`.`notes` AS `notes` FROM `rendezvous` AS `r` ;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+  ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Index pour la table `dossier`
+--
+ALTER TABLE `dossier`
+  ADD PRIMARY KEY (`id_dossier`),
+  ADD KEY `id_patient` (`id_patient`),
+  ADD KEY `id_specialiste` (`id_specialiste`);
+
+--
+-- Index pour la table `lieu`
+--
+ALTER TABLE `lieu`
+  ADD PRIMARY KEY (`id_lieu`);
+
+--
+-- Index pour la table `patient`
+--
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`id_patient`);
+
+--
+-- Index pour la table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  ADD PRIMARY KEY (`id_rdv`),
+  ADD KEY `id_patient` (`id_patient`),
+  ADD KEY `id_specialiste` (`id_specialiste`),
+  ADD KEY `id_lieu` (`id_lieu`);
+
+--
+-- Index pour la table `specialiste`
+--
+ALTER TABLE `specialiste`
+  ADD PRIMARY KEY (`id_specialiste`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`id_utilisateur`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `dossier`
+--
+ALTER TABLE `dossier`
+  MODIFY `id_dossier` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `lieu`
+--
+ALTER TABLE `lieu`
+  MODIFY `id_lieu` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  MODIFY `id_rdv` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
