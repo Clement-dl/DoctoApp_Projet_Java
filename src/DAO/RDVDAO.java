@@ -107,7 +107,7 @@ public class RendezVousDAO implements IRendezVousDAO {
 
     @Override
     public void updateRendezVous(RendezVous rdv) throws SQLException {
-        String sql = "UPDATE rendezvous SET idPatient = ?, idSpecialiste = ?, dateHeure = ?, note = ? WHERE idRendezVous = ?";
+        String sql = "UPDATE rendezvous SET idPatient = ?,idSpecialiste = ?, dateHeure = ?, note = ? WHERE idRendezVous = ?";
         try (Connection conn = ConnexionBDD.getConnection(); 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, rdv.getIdPatient());
@@ -118,7 +118,6 @@ public class RendezVousDAO implements IRendezVousDAO {
             stmt.executeUpdate();
         }
     }
-
     @Override
     public void deleteRendezVous(int id) throws SQLException {
         String sql = "DELETE FROM rendezvous WHERE idRendezVous = ?";
