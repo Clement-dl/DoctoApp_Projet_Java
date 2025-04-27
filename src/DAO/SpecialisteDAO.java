@@ -1,38 +1,89 @@
-package DAO;
+package dao;
 
+import model.Specialiste;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import Model.Specialiste;
 
-public class SpecialisteDAO {
-    private Connection conn;
+/**
+ * Implémentation de l'interface ISpecialisteDAO pour accéder aux données des spécialistes.
+ */
+public class SpecialisteDAO implements ISpecialisteDAO {
 
-    public SpecialisteDAO(Connection conn) {
-        this.conn = conn;
-    }
-    public List<Specialiste> getSpecialistesParSpecialite(String specialite) {
-        List<Specialiste> liste = new ArrayList<>();
-        String query = "SELECT s.id_specialiste, s.specialisation, s.qualification, u.nom, u.prenom FROM specialiste s " +
-                "JOIN utilisateur u ON s.id_specialiste = u.id_utilisateur WHERE s.specialisation = ?";
-
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, specialite);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                Specialiste sp = new Specialiste(
-                        rs.getInt("id_specialiste"),
-                        rs.getString("specialisation"),
-                        rs.getString("qualification"),
-                        rs.getString("nom"),
-                        rs.getString("prenom")
-                );
-                liste.add(sp);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    @Override
+    public void createSpecialiste(Specialiste s) throws SQLException {
+        String sql = "INSERT INTO specialistes (nom, prenom, specialite, lieu) VALUES (?, ?, ?, ?)";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, s.getNom());
+            stmt.setString(2, s.getPrenom());
+            stmt.setString(3, s.getSpecialite());
+            stmt.setString(4, s.getLieu());
+            stmt.executeUpdate();
         }
-        return liste;
+    }
+
+    @Override
+    public Specialiste getSpecialisteById(int id) throws SQLException {
+        String sql = "SELECT * FROM specialistes WHERE idSpecialiste = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Specialiste(
+                    rs.getInt("idSpecialiste"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("specialite"),
+                    rs.getString("lieu")
+                );
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Specialiste> getAllSpecialistes() throws SQLException {
+        List<Specialiste> specialistes = new ArrayList<>();
+        String sql = "SELECT * FROM specialistes";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             Statement stmt = conn.createStatement(); 
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                specialistes.add(new Specialiste(
+                    rs.getInt("idSpecialiste"),
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("specialite"),
+                    rs.getString("lieu")
+                ));
+            }
+        }
+        return specialistes;
+    }
+
+    @Override
+    public void updateSpecialiste(Specialiste s) throws SQLException {
+        String sql = "UPDATE specialistes SET nom = ?, prenom = ?, specialite = ?, lieu = ? WHERE idSpecialiste = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, s.getNom());
+            stmt.setString(2, s.getPrenom());
+            stmt.setString(3, s.getSpecialite());
+            stmt.setString(4, s.getLieu());
+            stmt.setInt(5, s.getIdSpecialiste());
+            stmt.executeUpdate();
+        }
+    }
+
+    @Override
+    public void deleteSpecialiste(int id) throws SQLException {
+        String sql = "DELETE FROM specialistes WHERE idSpecialiste = ?";
+        try (Connection conn = ConnexionBDD.getConnection(); 
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
     }
 }
