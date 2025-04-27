@@ -12,7 +12,7 @@ public class PatientDAO {
         ResultSet rs = null;
 
         try {
-            conn = DatabaseConnection.getConnection(); // Assure-toi que tu as une méthode qui donne la connexion
+            conn = DatabaseConnection.getConnection(); // Pour s'assurer que la  méthode donne la connexion
             String sql = "SELECT * FROM patient WHERE id_patient = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -30,8 +30,8 @@ public class PatientDAO {
                 String numSecu = rs.getString("numero_securite_sociale");
                 String mdp = rs.getString("mot_de_passe");
 
-                patient = new Patient(nomUtilisateur, nom, prenom, adresse, ville, codePostal, telephone, numSecu, mdp);
-                patient.setId(id); // si tu as une méthode setId
+                patient = new Patient(nomUtilisateur,nom,prenom,adresse,ville,codePostal,telephone,numSecu,mdp);
+                patient.setId(id); // Pour une méthode setId
 
             }
 
@@ -46,10 +46,8 @@ public class PatientDAO {
                 e.printStackTrace();
             }
         }
-
-        return patient;
+       return patient;
     }
-
 
     public void ajouter(Patient patient) throws SQLException {
         Connection conn = null;
@@ -135,7 +133,6 @@ public class PatientDAO {
                 e.printStackTrace();
             }
         }
-
         return id;
     }
 
